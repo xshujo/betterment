@@ -124,23 +124,48 @@ footer label svg {
 
 /* Post options */
 footer #post-options {
+    width: 90%;
     list-style: none;
     padding: 0.5rem 0;
     display: none;
     flex-flow: row nowrap;
     align-items: baseline;
-    gap: 1rem;
+    justify-content: space-between;
     position: absolute;
     bottom: 4rem;
+    transition: 0.3s ease-in-out;
 }
 
 footer #post-options li {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 footer #post-options li svg {
     width: 2rem;
     display: grid;
     place-items: center;
+    transition: 0.3s ease-in-out;
+}
+
+footer #post-options li span {
+    width: 3rem;
+    font-size: 0.75rem;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: scaleY(0.9);
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover = obsolete? */
+footer #post-options li:hover svg {
+    width: 3rem;
+}
+
+footer #post-options li:hover span {
+    width: 4rem;
+    opacity: 1;
 }
