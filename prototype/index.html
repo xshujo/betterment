@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <img id="logo" src="images/logo.png" alt="BetterMent logo">
+        <a href="index.html"><img id="logo" src="images/logo.png" alt="BetterMent logo"></a>
         <button id="settings">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
                 <path
@@ -20,32 +20,38 @@
         </button>
     </header>
     <main>
-        <section id="profile">
-            <div class="weight" id="cur-weight">
+        <section id="profile" class="top-section">
+            <div class="weight side-item" id="cur-weight">
                 <p>Current weight</p>
                 <p>150 lbs</p>
             </div>
 
             <img id="pfp" src="images/pfp.png" alt="User's profile picture">
 
-            <div class="weight" id="tar-weight">
+            <div class="weight side-item" id="tar-weight">
                 <p>Target weight</p>
                 <p>140 lbs</p>
             </div>
         </section>
-        <section id="logs">
-            <div class="log">
-                <h2>Journal</h2>
-                <p>Record your thoughts about your health journey</p>
-            </div>
-            <div class="log">
-                <h2>Food log</h2>
-                <p>Track your calories with this simple food log</p>
-            </div>
-            <div class="log">
-                <h2>Exercise log</h2>
-                <p>Track your workouts and other physical activities</p>
-            </div>
+        <section id="logs" class="bottom-section">
+            <a href="">
+                <div class="log section-item">
+                    <h2>Journal</h2>
+                    <p>Record your thoughts about your health journey</p>
+                </div>
+            </a>
+            <a href="food.html">
+                <div class="log section-item">
+                    <h2>Food log</h2>
+                    <p>Track your calories with this simple food log</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="log section-item">
+                    <h2>Exercise log</h2>
+                    <p>Track your workouts and other physical activities</p>
+                </div>
+            </a>
         </section>
     </main>
     <footer>
