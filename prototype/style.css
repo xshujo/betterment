@@ -30,6 +30,7 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 5;
 }
 
 input#add-post {
@@ -44,6 +45,8 @@ input#add-post+label {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 input#add-post+label span {
@@ -56,4 +59,9 @@ input#add-post+label span {
 
 input#add-post+label span:first-of-type {
     transform: rotate(90deg);
+}
+
+input#add-post:checked+label {
+    border-radius: 50%;
+    transform: rotate(135deg);
 }
