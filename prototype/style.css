@@ -73,6 +73,7 @@ section div.item:has(+h2) {
 article hr {
     height: 1px;
     background-color: rgb(216, 216, 216);
+    margin: 0.5rem 0;
     border: none;
 }
 
