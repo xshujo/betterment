@@ -21,6 +21,10 @@ a {
     cursor: pointer;
 }
 
+img {
+    user-select: none;
+}
+
 body {
     background-color: var(--accent3);
     display: flex;
@@ -121,9 +125,12 @@ input#add-post {
 }
 
 input#add-post+label {
+    width: 1.25rem;
+    height: 1.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.2s;
 }
 
 input#add-post+label span {
@@ -136,6 +143,64 @@ input#add-post+label span {
 
 input#add-post+label span:last-of-type {
     transform: rotate(90deg);
+}
+
+input#add-post:checked+label {
+    transform: rotate(45deg);
+}
+
+input#add-post+label+ul {
+    width: 3.5rem;
+    height: 3.5rem;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    left: calc(50%);
+    transform: translateX(-50%);
+    top: -5rem;
+}
+
+input#add-post+label+ul li {
+    width: 3.5rem;
+    height: 3.5rem;
+    /* Might wanna add diversity */
+    background-color: var(--accent2);
+    box-shadow: 1px 1px 5px 2px var(--shadow);
+    opacity: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translateY(50%) translateX(0);
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+input#add-post:checked+label+ul li {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+input#add-post:checked+label+ul li:nth-of-type(1) {
+    transform: translateY(0) translateX(250%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(2) {
+    transform: translateY(-100%) translateX(150%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(3) {
+    transform: translateY(-150%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(4) {
+    transform: translateY(0) translateX(-250%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(5) {
+    transform: translateY(-100%) translateX(-150%);
 }
 
 @media only screen and (min-width:510px) {
