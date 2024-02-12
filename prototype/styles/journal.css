@@ -32,6 +32,49 @@ body {
     align-items: center;
 }
 
+header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+header input {
+    width: 90%;
+    background-color: var(--accent2);
+    border: none;
+    border-radius: 1.5rem;
+    outline: none;
+    padding: calc(0.75rem + 1px) calc(1rem + 1px);
+}
+
+header input:focus {
+    border: 1px solid var(--accent1);
+    padding: 0.75rem 1rem;
+}
+
+main {
+    padding: 0 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+main article {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+main article h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
 footer {
     width: 100%;
     background-color: var(--accent2);
