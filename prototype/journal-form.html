@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>BetterMent</title>
+    <link rel="stylesheet" href="styles/journal-form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <button>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    <main>
+        <form action="">
+            <!-- À revoir... -->
+            <div>
+                <select name="day" id="day">
+                    <!-- Use JS to increment -->
+                    <option value="1">1</option>
+                </select>
+                <select name="month" id="month">
+                    <!-- Consider handling with JS for default value -->
+                    <option value="jan">January</option>
+                    <option value="feb">Febuary</option>
+                    <option value="mar">March</option>
+                    <option value="apr">April</option>
+                </select>
+                <select name="year" id="year">
+                    <option value="1970">1970</option>
+                </select>
+            </div>
+
+            <input type="date" id="note-date" value="2024-02-13">
+            <label for="note-date"></label>
+            <textarea name="note-content" id="note-content" cols="30" rows="10"></textarea>
+            <button type="submit">
+                <span></span>
+                <span></span>
+            </button>
+        </form>
+    </main>
+</body>
+
+</html>
