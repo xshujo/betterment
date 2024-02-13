@@ -5,94 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>BetterMent</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- components/Header.js -->
     <header>
-        <a href="index.html"><img id="logo" src="images/logo.png" alt="BetterMent logo"></a>
-        <button id="settings">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
-                <path
-                    d="M 10.490234 2 C 10.011234 2 9.6017656 2.3385938 9.5097656 2.8085938 L 9.1757812 4.5234375 C 8.3550224 4.8338012 7.5961042 5.2674041 6.9296875 5.8144531 L 5.2851562 5.2480469 C 4.8321563 5.0920469 4.33375 5.2793594 4.09375 5.6933594 L 2.5859375 8.3066406 C 2.3469375 8.7216406 2.4339219 9.2485 2.7949219 9.5625 L 4.1132812 10.708984 C 4.0447181 11.130337 4 11.559284 4 12 C 4 12.440716 4.0447181 12.869663 4.1132812 13.291016 L 2.7949219 14.4375 C 2.4339219 14.7515 2.3469375 15.278359 2.5859375 15.693359 L 4.09375 18.306641 C 4.33275 18.721641 4.8321562 18.908906 5.2851562 18.753906 L 6.9296875 18.1875 C 7.5958842 18.734206 8.3553934 19.166339 9.1757812 19.476562 L 9.5097656 21.191406 C 9.6017656 21.661406 10.011234 22 10.490234 22 L 13.509766 22 C 13.988766 22 14.398234 21.661406 14.490234 21.191406 L 14.824219 19.476562 C 15.644978 19.166199 16.403896 18.732596 17.070312 18.185547 L 18.714844 18.751953 C 19.167844 18.907953 19.66625 18.721641 19.90625 18.306641 L 21.414062 15.691406 C 21.653063 15.276406 21.566078 14.7515 21.205078 14.4375 L 19.886719 13.291016 C 19.955282 12.869663 20 12.440716 20 12 C 20 11.559284 19.955282 11.130337 19.886719 10.708984 L 21.205078 9.5625 C 21.566078 9.2485 21.653063 8.7216406 21.414062 8.3066406 L 19.90625 5.6933594 C 19.66725 5.2783594 19.167844 5.0910937 18.714844 5.2460938 L 17.070312 5.8125 C 16.404116 5.2657937 15.644607 4.8336609 14.824219 4.5234375 L 14.490234 2.8085938 C 14.398234 2.3385937 13.988766 2 13.509766 2 L 10.490234 2 z M 12 8 C 14.209 8 16 9.791 16 12 C 16 14.209 14.209 16 12 16 C 9.791 16 8 14.209 8 12 C 8 9.791 9.791 8 12 8 z">
-                </path>
-            </svg>
-        </button>
+        <img src="images/pfp.png" alt="User profile picture">
+        <div>
+            <h1>What's on your mind?</h1>
+            <p>Write a note <span>></span></p>
+        </div>
     </header>
+    <!-- components/Main.js -->
     <main>
-        <section id="profile" class="top-section">
-            <div class="weight side-item" id="cur-weight">
-                <p>Current weight</p>
-                <p>150 lbs</p>
-            </div>
-
-            <img id="pfp" src="images/pfp.png" alt="User's profile picture">
-
-            <div class="weight side-item" id="tar-weight">
-                <p>Target weight</p>
-                <p>140 lbs</p>
-            </div>
+        <!-- components/ActivitySection.js -->
+        <section class="category">
+            <h2>Activity</h2>
+            <h3>5465 steps</h3>
+            <p>4535 steps to go</p>
         </section>
-        <section id="logs" class="bottom-section">
-            <a href="">
-                <div class="log section-item">
-                    <h2>Journal</h2>
-                    <p>Record your thoughts about your health journey</p>
-                </div>
-            </a>
-            <a href="food.html">
-                <div class="log section-item">
-                    <h2>Food log</h2>
-                    <p>Track your calories with this simple food log</p>
-                </div>
-            </a>
-            <a href="">
-                <div class="log section-item">
-                    <h2>Exercise log</h2>
-                    <p>Track your workouts and other physical activities</p>
-                </div>
-            </a>
+        <!-- components/NutritionSection.js -->
+        <section class="category">
+            <h2>Nutrition</h2>
+            <h3>680 calories</h3>
+            <p>770 calories remaining</p>
+        </section>
+        <!-- components/SleepSection.js -->
+        <section class="category">
+            <h2>Sleep</h2>
+            <h3>8h45m</h3>
+            <p>22h05 - 6h50</p>
+        </section>
+        <!-- components/MeasurementsSection.js -->
+        <section class="category">
+            <h2>Measurements</h2>
+            <h3>155 lbs</h3>
+            <p>8 lbs to be lost</p>
         </section>
     </main>
+    <!-- components/Footer.js -->
     <footer>
-        <input type="checkbox" name="add-post" id="add-post">
-        <label for="add-post" id="plus-btn">
-            <span>&#43;</span>
+        <img src="images/home.svg" alt="Home">
+        <img src="images/log.svg" alt="Log">
+        <!-- ?/AddPostList? -->
+        <input type="checkbox" id="add-post">
+        <label for="add-post">
+            <span></span>
+            <span></span>
         </label>
-        <ul id="post-options">
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path
-                        d="M128 176a128 128 0 1 1 256 0 128 128 0 1 1 -256 0zM391.8 64C359.5 24.9 310.7 0 256 0S152.5 24.9 120.2 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H391.8zM296 224c0-10.6-4.1-20.2-10.9-27.4l33.6-78.3c3.5-8.1-.3-17.5-8.4-21s-17.5 .3-21 8.4L255.7 184c-22 .1-39.7 18-39.7 40c0 22.1 17.9 40 40 40s40-17.9 40-40z" />
-                </svg>
-                <span>Weight</span>
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path
-                        d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V299.6l-94.7 94.7c-8.2 8.2-14 18.5-16.8 29.7l-15 60.1c-2.3 9.4-1.8 19 1.4 27.8H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z" />
-                </svg>
-                <span>Thought</span>
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path
-                        d="M224 112c-8.8 0-16-7.2-16-16V80c0-44.2 35.8-80 80-80h16c8.8 0 16 7.2 16 16V32c0 44.2-35.8 80-80 80H224zM0 288c0-76.3 35.7-160 112-160c27.3 0 59.7 10.3 82.7 19.3c18.8 7.3 39.9 7.3 58.7 0c22.9-8.9 55.4-19.3 82.7-19.3c76.3 0 112 83.7 112 160c0 128-80 224-160 224c-16.5 0-38.1-6.6-51.5-11.3c-8.1-2.8-16.9-2.8-25 0c-13.4 4.7-35 11.3-51.5 11.3C80 512 0 416 0 288z" />
-                </svg>
-                <span>Meal</span>
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path
-                        d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z" />
-                </svg>
-                <span>Exercise</span>
-            </li>
+        <ul>
+            <li><img src="images/nav.png" alt="Add activity entry"></li>
+            <li><img src="images/nav.png" alt="Add meal entry"></li>
+            <li><img src="images/nav.png" alt="Add note entry"></li>
+            <li><img src="images/nav.png" alt="Add sleep entry"></li>
+            <li><img src="images/nav.png" alt="Add measurement entry"></li>
         </ul>
+        <img src="images/journal.svg" alt="Journal">
+        <img src="images/profile.svg" alt="Profile">
     </footer>
 </body>
 

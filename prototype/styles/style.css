@@ -1,0 +1,221 @@
+:root {
+    --accent1: rgb(48, 32, 13);
+    --accent2: rgb(214, 188, 156);
+    --accent3: rgb(243, 231, 216);
+    --shadow: rgba(48, 32, 13, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+img {
+    user-select: none;
+}
+
+body {
+    background-color: var(--accent3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    height: 33svh;
+    padding: 0 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
+header img {
+    max-height: 60%;
+    border-bottom: 0.5rem solid white;
+    border-left: 0.5rem solid white;
+    border-radius: 50%;
+}
+
+header div {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 0.1429rem + 1.7857vw, 1rem);
+}
+
+header div h1 {
+    font-size: clamp(1.5rem, 1.1429rem + 1.7857vw, 2rem);
+    font-weight: 600;
+    color: var(--accent1);
+}
+
+header div p {
+    display: flex;
+    gap: 0.75rem;
+}
+
+header div p span {
+    transform: scaleX(0.75);
+}
+
+main {
+    width: 100%;
+    min-height: 67svh;
+    padding: 0 5vw 7rem 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 5vw;
+}
+
+main section.category {
+    background-color: white;
+    box-shadow: 2px 2px 10px var(--shadow);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+section.category h2 {
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+section.category h3 {
+    font-size: clamp(1.5rem, 0.9643rem + 2.6786vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+section.category p {
+    font-size: 0.9rem;
+}
+
+footer {
+    width: 100%;
+    background-color: var(--accent2);
+    box-shadow: 0 -1px 5px var(--shadow);
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+}
+
+footer img {
+    height: 1.5rem;
+}
+
+input#add-post {
+    display: none;
+}
+
+input#add-post+label {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+
+input#add-post+label span {
+    width: 1rem;
+    height: 2px;
+    background-color: var(--accent1);
+    border-radius: 2px;
+    position: absolute;
+}
+
+input#add-post+label span:last-of-type {
+    transform: rotate(90deg);
+}
+
+input#add-post:checked+label {
+    transform: rotate(45deg);
+}
+
+input#add-post+label+ul {
+    width: 3.5rem;
+    height: 3.5rem;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    left: calc(50%);
+    transform: translateX(-50%);
+    top: -5rem;
+}
+
+input#add-post+label+ul li {
+    width: 3.5rem;
+    height: 3.5rem;
+    /* Might wanna add diversity */
+    background-color: var(--accent2);
+    box-shadow: 1px 1px 5px 2px var(--shadow);
+    opacity: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translateY(50%) translateX(0);
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+input#add-post:checked+label+ul li {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+input#add-post:checked+label+ul li:nth-of-type(1) {
+    transform: translateY(0) translateX(250%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(2) {
+    transform: translateY(-100%) translateX(150%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(3) {
+    transform: translateY(-150%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(4) {
+    transform: translateY(0) translateX(-250%);
+}
+
+input#add-post:checked+label+ul li:nth-of-type(5) {
+    transform: translateY(-100%) translateX(-150%);
+}
+
+@media only screen and (min-width:510px) {
+    main {
+        max-width: calc(600px + 15vw);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        place-items: center;
+        gap: 5vw;
+    }
+
+    main section.category {
+        width: 100%;
+        max-width: 300px;
+        height: 100%;
+    }
+}
