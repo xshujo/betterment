@@ -4,25 +4,36 @@ import ProfilePic from "../assets/images/pfp.png";
 
 const styles = StyleSheet.create({
     header: {
-        paddingHorizontal: 20,
+        flex: 1,
+        paddingHorizontal: 30,
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 15
+        gap: 30,
+    },
+    profilePicContainer: {
+        borderLeftWidth: 5,
+        borderLeftColor: 'white',
+        borderRadius: 75,
+        overflow: 'hidden',
     },
     profilePic: {
         width: 125,
         height: 125,
-        borderRadius: 75,
+    },
+    title: {
+
     },
 });
 
 export default function Header() {
     return (
         <View style={styles.header}>
-            <Image source={ProfilePic} style={styles.profilePic} />
+            <View style={styles.profilePicContainer}>
+                <Image source={ProfilePic} style={styles.profilePic} />
+            </View>
             <View>
-                <Text>
+                <Text style={styles.title}>
                     What's on your mind?
                 </Text>
                 <Text>
