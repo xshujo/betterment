@@ -6,22 +6,40 @@ import AddPost from "../assets/images/icon.png";
 import Journal from "../assets/images/icon.png";
 import Profile from "../assets/images/icon.png";
 
+import { useNavigation } from "@react-navigation/native";
+
 export default function Footer() {
+
+    const navigateToHome = () => {
+        useNavigation().navigate('Home');
+    };
+
+    const navigateToLog = () => {
+        useNavigation().navigate('Log');
+    };
+
+    const navigateToJournal = () => {
+        useNavigation().navigate('Journal');
+    };
+
+    const navigateToProfile = () => {
+        useNavigation().navigate('Profile');
+    };
     return (
         <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={navigateToHome}>
                 <Image source={Home} style={{ width: 32, height: 32 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={navigateToLog}>
                 <Image source={Log} style={{ width: 32, height: 32 }} />
             </TouchableOpacity>
             <TouchableOpacity>
                 <Image source={AddPost} style={{ width: 32, height: 32 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={navigateToJournal}>
                 <Image source={Journal} style={{ width: 32, height: 32 }} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={navigateToProfile}>
                 <Image source={Profile} style={{ width: 32, height: 32 }} />
             </TouchableOpacity>
         </View>

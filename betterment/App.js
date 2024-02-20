@@ -1,17 +1,31 @@
 import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
+import LogScreen from './src/screens/LogScreen';
 import JournalScreen from './src/screens/JournalScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 import Footer from './src/components/Footer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* Temp */}
-      <HomeScreen />
-      {/* <JournalScreen /> */}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='Log' component={LogScreen} />
+        <Stack.Screen name='Journal' component={JournalScreen} />
+        <Stack.Screen name='Profile' component={ProfileScreen} />
+      </Stack.Navigator>
       <Footer />
-    </View>
+    </NavigationContainer>
+    // <View style={styles.container}>
+    //   <HomeScreen />
+    //   <JournalScreen />
+    //   <Footer />
+    // </View>
   );
 }
 
