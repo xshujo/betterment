@@ -7,7 +7,7 @@ export default function SearchNotes() {
     return (
         <View style={styles.searchNotes}>
             <TouchableOpacity>
-                <Image source={Sort} />
+                <Image source={Sort} style={{ width: 24, height: 24, }} />
             </TouchableOpacity>
             <View style={styles.searchBar}>
                 <TextInput placeholder="Search notes..." style={styles.textInput} />
