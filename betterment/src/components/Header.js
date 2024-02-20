@@ -24,6 +24,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     header: {
         width: width,
+        marginBottom: 32,
         paddingHorizontal: width * 0.05,
         flex: 1,
         flexDirection: 'row',

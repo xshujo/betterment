@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
 import JournalScreen from './src/screens/JournalScreen';
+import Footer from './src/components/Footer';
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       {/* Temp */}
       <HomeScreen />
       {/* <JournalScreen /> */}
+      <Footer />
     </View>
   );
 }
