@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View, Platform } from "react-native";
 import Home from "../assets/images/icon.png";
 import Log from "../assets/images/icon.png";
 import AddPost from "../assets/images/icon.png";
@@ -33,6 +33,17 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     footer: {
         backgroundColor: '#d6bc9c',
+        ...Platform.select({
+            ios: {
+                shadowColor: '#30200d',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.3,
+                shadowRadius: 2,
+            },
+            android: {
+                elevation: 2,
+            },
+        }),
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
         paddingHorizontal: width * 0.05,

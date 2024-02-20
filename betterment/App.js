@@ -8,8 +8,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* Temp */}
-      <HomeScreen />
-      {/* <JournalScreen /> */}
+      {/* <HomeScreen /> */}
+      <JournalScreen />
       <Footer />
     </View>
   );

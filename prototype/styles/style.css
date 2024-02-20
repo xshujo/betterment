@@ -1,7 +1,7 @@
 :root {
-    --accent1: rgb(48, 32, 13);
-    --accent2: rgb(214, 188, 156);
-    --accent3: rgb(243, 231, 216);
+    --accent1: #30200d;
+    --accent2: #d6bc9c;
+    --accent3: #f3e7d8;
     --shadow: rgba(48, 32, 13, 0.1);
 }
 

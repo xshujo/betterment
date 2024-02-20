@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
     section: {
         width: width * 0.9,
         backgroundColor: 'white',
-        borderRadius: 16,
-        padding: 16,
         ...Platform.select({
             ios: {
                 shadowColor: '#30200d',
@@ -30,6 +28,8 @@ const styles = StyleSheet.create({
                 elevation: 1,
             },
         }),
+        borderRadius: 16,
+        padding: 16,
     },
     title: {
         fontSize: 22,
