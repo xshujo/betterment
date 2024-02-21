@@ -22,6 +22,9 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     homeScreen: {
         paddingTop: 48,
+        width: width,
+        height: height,
+        backgroundColor: '#f3e7d8',
     },
     categories: {
         paddingBottom: 150,

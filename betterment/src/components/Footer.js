@@ -9,21 +9,22 @@ import Profile from "../assets/images/icon.png";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Footer() {
+    const navigation = useNavigation();
 
     const navigateToHome = () => {
-        useNavigation().navigate('Home');
+        navigation.navigate('Home');
     };
 
     const navigateToLog = () => {
-        useNavigation().navigate('Log');
+        navigation.navigate('Log');
     };
 
     const navigateToJournal = () => {
-        useNavigation().navigate('Journal');
+        navigation.navigate('Journal');
     };
 
     const navigateToProfile = () => {
-        useNavigation().navigate('Profile');
+        navigation.navigate('Profile');
     };
     return (
         <View style={styles.footer}>

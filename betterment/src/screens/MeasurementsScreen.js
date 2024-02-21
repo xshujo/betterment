@@ -1,10 +1,23 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 
 export default function MeasurementsScreen() {
     return (
-        <View>
+        <View style={styles.measurementsScreen}>
             <Text>Measurements screen</Text>
         </View>
     );
 }
+
+const { width, height } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    measurementsScreen: {
+        width: width,
+        height: height,
+        backgroundColor: '#f3e7d8',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
