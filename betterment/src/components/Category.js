@@ -1,13 +1,13 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View, Platform } from "react-native";
+import { Dimensions, StyleSheet, Text, View, Platform, TouchableOpacity } from "react-native";
 
 export default function Category({ title, value, summary }) {
     return (
-        <View style={styles.section}>
+        <TouchableOpacity style={styles.section}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.value}>{value}</Text>
             <Text style={styles.summary}>{summary}</Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 
