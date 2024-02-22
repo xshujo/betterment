@@ -1,12 +1,12 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
-import SearchNotes from "../components/SearchNotes";
+import Search from "../components/Search";
 import Note from "../components/Note";
 
 export default function JournalScreen() {
     return (
         <View style={styles.journalScreen}>
-            <SearchNotes />
+            <Search />
             <ScrollView style={styles.notes}>
                 <Note date="19022024" content="Here are more thoughts" />
                 <Note date="18022024" content="Here are my thoughts" />
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         width: width,
         height: height,
         backgroundColor: '#f3e7d8',
+        alignItems: 'center'
     },
     notes: {
         marginBottom: 50,
