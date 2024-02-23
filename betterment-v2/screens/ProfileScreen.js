@@ -5,9 +5,9 @@ import { View } from "react-native";
 import Header from "../components/Header";
 
 export default function ProfileScreen() {
-    return (
-        <View>
-            <Header screen="Profile" />
-        </View>
-    );
+	return (
+		<View>
+			<Header screen="Profile" />
+		</View>
+	);
 }

@@ -7,13 +7,13 @@ import Search from "../components/Search";
 import DiaryEntry from "../components/DiaryEntry";
 
 export default function DiaryScreen() {
-    return (
-        <View>
-            <Header screen="Dairy" />
-            <Search />
-            <View>
-                <DiaryEntry />
-            </View>
-        </View>
-    );
+	return (
+		<View>
+			<Header screen="Dairy" />
+			<Search />
+			<View>
+				<DiaryEntry />
+			</View>
+		</View>
+	);
 }
