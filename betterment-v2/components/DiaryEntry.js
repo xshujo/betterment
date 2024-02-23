@@ -1,12 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Dim } from "../constants/Dimensions";
 
-export default function DiaryEntry() {
-    return (
-        <View>
-            <Text>Feb 22, 2024</Text>
-            <View>{/* Emojies */}</View>
-            <Text>Here are some thoughts</Text>
-        </View>
-    );
+export default function DiaryEntry({ date, content }) {
+	return (
+		<View style={styles.container}>
+			<Text>{date}</Text>
+			<View>{/* Emojies */}</View>
+			<Text>{content}</Text>
+		</View>
+	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		width: Dim.vpWidth,
+	}
+});
