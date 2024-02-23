@@ -3,10 +3,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-export default function Header() {
+export default function Header({screen}) {
     return (
         <View>
-            <Text>Home</Text>
+            <Text>{screen}</Text>
         </View>
     );
 }

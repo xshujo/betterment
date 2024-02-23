@@ -9,7 +9,7 @@ import DiaryEntry from "../components/DiaryEntry";
 export default function DiaryScreen() {
     return (
         <View>
-            <Header />
+            <Header screen="Dairy" />
             <Search />
             <View>
                 <DiaryEntry />
