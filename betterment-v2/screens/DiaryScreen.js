@@ -10,7 +10,7 @@ import { Colors } from "../constants/Colors";
 
 export default function DiaryScreen() {
   return (
-    <View style={styles.diaryScreen}>
+    <View style={styles.container}>
       <Header screen="Diary" />
       <Search />
       <View>
@@ -21,7 +21,7 @@ export default function DiaryScreen() {
 }
 
 const styles = StyleSheet.create({
-  diaryScreen: {
+  container: {
     width: Dim.vpWidth,
     height: Dim.vpHeight,
     backgroundColor: Colors.background,

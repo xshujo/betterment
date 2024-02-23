@@ -7,14 +7,14 @@ import { Colors } from "../constants/Colors";
 
 export default function Header({ screen }) {
   return (
-    <View style={styles.header}>
+    <View style={styles.container}>
       <Text style={styles.screenName}>{screen}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
     width: Dim.vpWidth,
     backgroundColor: Colors.primary,
     padding: 16,

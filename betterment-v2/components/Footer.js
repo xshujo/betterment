@@ -10,7 +10,7 @@ import { Dim } from "../constants/Dimensions";
 
 export default function Footer() {
   return (
-    <View style={styles.footer}>
+    <View style={styles.container}>
       <TouchableOpacity>
         <Image source={HomeIcon} style={styles.icon} />
       </TouchableOpacity>
@@ -31,11 +31,11 @@ export default function Footer() {
 }
 
 const styles = StyleSheet.create({
-  footer: {
+  container: {
     width: Dim.vpWidth,
     backgroundColor: Colors.primary,
     paddingVertical: 20,
-    paddingHorizontal: Dim.sidePadding,
+    paddingHorizontal: Dim.sideSpace,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

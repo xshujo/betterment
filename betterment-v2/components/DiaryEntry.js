@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Dim } from "../constants/Dimensions";
+import { Colors } from "../constants/Colors";
 
 export default function DiaryEntry({ date, content }) {
 	return (
@@ -14,6 +15,9 @@ export default function DiaryEntry({ date, content }) {
 
 const styles = StyleSheet.create({
 	container: {
-		width: Dim.vpWidth,
+		width: Dim.w90,
+		backgroundColor: 'white',
+		padding: 16,
+		borderRadius: 8
 	}
 });
