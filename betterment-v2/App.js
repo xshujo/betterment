@@ -1,20 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import DiaryScreen from './screens/DiaryScreen';
+import Footer from './components/Footer';
+import { Colors } from './constants/Colors';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
+      <StatusBar backgroundColor={Colors.primary} barStyle="dark-content" />
       <DiaryScreen />
-    </View>
+      <Footer />
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
