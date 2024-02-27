@@ -4,13 +4,16 @@ import Footer from './components/Footer';
 import { Colors } from './constants/Colors';
 import Header from './components/Header';
 import { Dim } from './constants/Dimensions';
+import LogScreen from './screens/LogScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <Header screen="Home" />
-      <View style={styles.screenContainer}></View>
+      <Header screen="Log" />
+      <View style={styles.screenContainer}>
+        <LogScreen />
+      </View>
       <Footer />
     </View>
   );
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch'
   },
   screenContainer: {
-    backgroundColor: 'blue', // Temp
+    backgroundColor: 'aliceblue', // Temp
     flex: 1
   }
 });
