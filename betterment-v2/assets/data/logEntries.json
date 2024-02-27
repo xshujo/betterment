@@ -1,0 +1,118 @@
+[
+  {
+    "id": "1",
+    "category": "activity",
+    "entries": [
+      {
+        "eid": "00000000000001",
+        "dateCreated": 1708875000000,
+        "activityName": "Treadmill",
+        "activityDuraction": 20
+      },
+      {
+        "eid": "00000000000002",
+        "dateCreated": 1708875000000,
+        "activityName": "Running",
+        "activityDuraction": 25
+      },
+      {
+        "eid": "00000000000003",
+        "dateCreated": 1708961400000,
+        "activityName": "Yoga",
+        "activityDuraction": 15
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "category": "nutrition",
+    "entries": [
+      {
+        "eid": "00000000000004",
+        "dateCreated": 1708875000000,
+        "mealType": "Breakfast",
+        "foodItemName": "Apple",
+        "foodItemCalories": 80
+      },
+      {
+        "eid": "00000000000005",
+        "dateCreated": 1708875000000,
+        "mealType": "Lunch",
+        "foodItemName": "Chicken sandwich",
+        "foodItemCalories": 300
+      },
+      {
+        "eid": "00000000000006",
+        "dateCreated": 1708875000000,
+        "mealType": "Dinner",
+        "foodItemName": "Mashed potatoes",
+        "foodItemCalories": 450
+      },
+      {
+        "eid": "00000000000007",
+        "dateCreated": 1708875000000,
+        "mealType": "Other",
+        "foodItemName": "Cookies",
+        "foodItemCalories": 200
+      },
+      {
+        "eid": "00000000000010",
+        "dateCreated": 1708961400000,
+        "mealType": "Lunch",
+        "foodItemName": "Soup",
+        "foodItemCalories": 200
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "category": "sleep",
+    "entries": [
+      {
+        "eid": "00000000000009",
+        "dateCreated": 1708875000000,
+        "sleepAt": "2024-02-25T22:00:00",
+        "wakeAt": "2024-02-26T07:00:00"
+      },
+      {
+        "eid": "000000000000011",
+        "dateCreated": 1708961400000,
+        "sleepAt": "2024-02-26T22:25:00",
+        "wakeAt": "2024-02-27T07:03:00"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "category": "measurements",
+    "entries": [
+      {
+        "eid": "00000000000012",
+        "dateCreated": 1708875000000,
+        "measurementName": "Weight",
+        "measurementValue": "154",
+        "measurementUnit": "lbs",
+        "measurementDate": "2024-02-25",
+        "measurementTime": "Morning"
+      },
+      {
+        "eid": "00000000000013",
+        "dateCreated": 1708875000000,
+        "measurementName": "Waist",
+        "measurementValue": "76",
+        "measurementUnit": "cm",
+        "measurementDate": "2024-02-25",
+        "measurementTime": "Afternoon"
+      },
+      {
+        "eid": "00000000000014",
+        "dateCreated": 1708961400000,
+        "measurementName": "Weight",
+        "measurementValue": "154.2",
+        "measurementUnit": "lbs",
+        "measurementDate": "2024-02-26",
+        "measurementTime": "Evening"
+      }
+    ]
+  }
+]
