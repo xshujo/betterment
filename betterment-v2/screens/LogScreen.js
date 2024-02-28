@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import LogEntries from "../components/LogEntries";
+import LogEntry from "../components/LogEntry";
 
 const logData = require('../assets/data/logEntries.json');
 
@@ -14,8 +14,24 @@ export default function LogScreen() {
         <Text style={styles.dateText}>Feb 25th, 2024</Text>
       </View>
       <View>{/* Sorters */}</View>
-      <LogEntries entryId="activity_20240225000" category="activity" activityCount={2} />
-      <LogEntries entryId="nutrition_20240225000" category="nutrition" mealCount={1} mealType="Breakfast" mealName="Apple" mealCalories={80} />
+
+      {logData.map((categoryData) => {
+        const { category, entries } = categoryData;
+
+        return (
+          <View style={styles.logContainer} key={category}>
+            <Text style={styles.categoryText}>{category}</Text>
+            {category === 'activity' && (<Text style={styles.countText}>Exercise count: </Text>)}
+            {category === 'nutrition' && (<Text style={styles.countText}>Meal count: </Text>)}
+            {entries.map((entry) => (
+              <LogEntry key={entry.eid} category={category} entry={entry} />
+            ))}
+          </View>
+        );
+      })}
+
+      <LogEntry entryId="activity_20240225000" category="activity" activityCount={2} />
+      <LogEntry entryId="nutrition_20240225000" category="nutrition" mealCount={1} mealType="Breakfast" mealName="Apple" mealCalories={80} />
     </ScrollView>
   );
 }
@@ -37,5 +53,22 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 24,
     fontWeight: 'bold',
-  }
+  },
+  logContainer: {
+    backgroundColor: 'white',
+    borderRadius: 16,
+    padding: 16,
+    gap: 12
+  },
+  categoryText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    letterSpacing: 1,
+    textTransform: 'uppercase'
+  },
+  countText: {
+    fontSize: 14,
+    marginTop: 4,
+    marginBottom: 8,
+  },
 });

@@ -7,19 +7,19 @@
         "eid": "00000000000001",
         "dateCreated": 1708875000000,
         "activityName": "Treadmill",
-        "activityDuraction": 20
+        "activityDuration": 20
       },
       {
         "eid": "00000000000002",
         "dateCreated": 1708875000000,
         "activityName": "Running",
-        "activityDuraction": 25
+        "activityDuration": 25
       },
       {
         "eid": "00000000000003",
         "dateCreated": 1708961400000,
         "activityName": "Yoga",
-        "activityDuraction": 15
+        "activityDuration": 15
       }
     ]
   },
