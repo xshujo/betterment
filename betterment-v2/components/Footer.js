@@ -37,7 +37,7 @@ export default function Footer() {
 const styles = StyleSheet.create({
   container: {
     minHeight: 72,
-    backgroundColor: 'red', // Temp
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'

@@ -26,18 +26,7 @@ export default function Header({ screen }) {
 const styles = StyleSheet.create({
   container: {
     minHeight: 72,
-    backgroundColor: 'red', // Temp
-    ...Platform.select({ // Might remove
-      ios: {
-        shadowColor: '#30200d',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'

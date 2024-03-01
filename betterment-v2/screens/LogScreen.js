@@ -3,6 +3,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import LogEntry from "../components/LogEntry";
+import { Colors } from "../constants/Colors";
 
 const logData = require('../assets/data/logEntries.json');
 
@@ -38,7 +39,7 @@ export default function LogScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'yellow', // Temp; set the background color directly in App
+    backgroundColor: 'white', // Temp; set the background color directly in App
     padding: 24,
     alignItems: 'stretch',
     gap: 16,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   logContainer: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.secondary,
     borderRadius: 16,
     padding: 16,
     gap: 12
