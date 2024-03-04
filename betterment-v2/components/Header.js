@@ -8,8 +8,10 @@ import { Colors } from "../constants/Colors";
 
 import GoBackIcon from "../assets/images/icon.png";
 import SettingsIcon from "../assets/images/icon.png";
+import { useCurrentScreen } from "../hooks/useCurrentScreen";
 
 export default function Header({ screen }) {
+  const currentScreen = useCurrentScreen();
   return (
     // Gradient; Might remove
     <LinearGradient colors={['#FFFFFF', '#F7B2B9']}
@@ -25,7 +27,7 @@ export default function Header({ screen }) {
         </TouchableOpacity>
 
         {/* Screen name */}
-        <Text style={styles.screenNameText}>{screen}</Text>
+        <Text style={styles.screenNameText}>{currentScreen}</Text>
 
         {/* Settings button */}
         <TouchableOpacity style={styles.iconContainer}>
