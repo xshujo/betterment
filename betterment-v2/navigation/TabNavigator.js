@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
   return (
     <NavigationContainer>
-      <Header screen="Log" />
+      <Header />
       <Tab.Navigator screenOptions={{
         headerShown: false,
         tabBarVisible: false,
