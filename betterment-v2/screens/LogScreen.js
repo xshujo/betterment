@@ -1,9 +1,12 @@
 // This component is a screen that displays the user's health entries //
 
 import React from "react";
+
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import LogEntry from "../components/LogEntry";
+import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from "../constants/Colors";
+
+import LogEntry from "../components/LogEntry";
 
 const logData = require('../assets/data/logEntries.json');
 
@@ -20,14 +23,19 @@ export default function LogScreen() {
         const { category, entries } = categoryData;
 
         return (
-          <View style={styles.logContainer} key={category}>
-            <Text style={styles.categoryText}>{category}</Text>
-            {category === 'activity' && (<Text style={styles.countText}>Exercise count: </Text>)}
-            {category === 'nutrition' && (<Text style={styles.countText}>Meal count: </Text>)}
-            {entries.map((entry) => (
-              <LogEntry key={entry.eid} category={category} entry={entry} />
-            ))}
-          </View>
+          <LinearGradient colors={['#FED3D4', '#EEFFF3']}
+            start={[0, 1]}
+            end={[1, 0]}
+            style={{ borderRadius: 16 }}>
+            <View style={styles.logContainer} key={category}>
+              <Text style={styles.categoryText}>{category}</Text>
+              {category === 'activity' && (<Text style={styles.countText}>Exercise count: </Text>)}
+              {category === 'nutrition' && (<Text style={styles.countText}>Meal count: </Text>)}
+              {entries.map((entry) => (
+                <LogEntry key={entry.eid} category={category} entry={entry} />
+              ))}
+            </View>
+          </LinearGradient>
         );
       })}
 
@@ -48,15 +56,16 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   dayText: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: 'bold',
+    color: Colors.accent2,
   },
   dateText: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: Colors.accent3,
   },
   logContainer: {
-    backgroundColor: Colors.secondary,
     borderRadius: 16,
     padding: 16,
     gap: 12
