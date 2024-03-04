@@ -10,7 +10,7 @@ import GoBackIcon from "../assets/images/icon.png";
 import SettingsIcon from "../assets/images/icon.png";
 import { useCurrentScreen } from "../hooks/useCurrentScreen";
 
-export default function Header({ screen }) {
+export default function Header() {
   const currentScreen = useCurrentScreen();
   return (
     // Gradient; Might remove
