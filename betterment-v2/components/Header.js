@@ -12,6 +12,7 @@ import { useCurrentScreen } from "../hooks/useCurrentScreen";
 
 export default function Header() {
   const currentScreen = useCurrentScreen();
+
   return (
     // Gradient; Might remove
     <LinearGradient colors={['#FFFFFF', '#F7B2B9']}

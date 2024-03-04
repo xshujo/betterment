@@ -14,16 +14,18 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
   return (
     <NavigationContainer>
-      <Header />
-      <Tab.Navigator screenOptions={{
-        headerShown: false,
-        tabBarVisible: false,
-      }}
-        tabBar={() => <Footer />}>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Log" component={LogScreen} />
-        <Tab.Screen name="Diary" component={DiaryScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: true,
+          header: () => <Header />,
+          tabBarVisible: false,
+        }}
+        tabBar={() => <Footer />}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+        <Tab.Screen name="Log" component={LogScreen} options={{ title: 'Log' }} />
+        <Tab.Screen name="Diary" component={DiaryScreen} options={{ title: 'Diary' }} />
+        <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
