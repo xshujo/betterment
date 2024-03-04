@@ -94,6 +94,14 @@ export default function LogEntry({ category, entry }) {
           <Text><Text>Sleep duration: </Text>{formattedDuration}</Text>
         </View>
       )}
+
+      {category === 'measurements' && (
+        <View>
+          <View style={styles.entryContainer}>
+            <Text style={styles.boldText}>{entry.measurementName}</Text><Text>{entry.measurementValue} {entry.measurementUnit}</Text>
+          </View>
+        </View>
+      )}
     </>
   );
 }
