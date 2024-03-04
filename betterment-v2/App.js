@@ -8,6 +8,7 @@ import DiaryScreen from './screens/DiaryScreen';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import LogScreen from './screens/LogScreen';
+import TabNavigator from './navigation/TabNavigator';
 
 export default function App() {
   // Load fonts before rendering the app
@@ -37,11 +38,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <Header screen="Log" />
-      <View style={styles.screenContainer}>
-        <LogScreen loaded={loaded} />
-      </View>
-      <Footer />
+      {/* <View style={styles.screenContainer}> */}
+      <TabNavigator />
+      {/* </View> */}
     </View>
   );
 }
