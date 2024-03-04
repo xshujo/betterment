@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function LogEntry({ category, entry }) {
   if (!entry) {
-    return null; // Return null if entry is undefined
+    return null;
   }
 
   // Sleep/Wake hours formating

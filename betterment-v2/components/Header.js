@@ -11,31 +11,49 @@ import SettingsIcon from "../assets/images/icon.png";
 
 export default function Header({ screen }) {
   return (
+    // Gradient; Might remove
     <LinearGradient colors={['#FFFFFF', '#F7B2B9']}
       start={[0, 1]}
       end={[0, 0]}>
+
+      {/* Container */}
       <View style={styles.container}>
+
+        {/* Go back button */}
         <TouchableOpacity style={styles.iconContainer}>
           <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
         </TouchableOpacity>
-        <Text style={{ color: Colors.accent3, fontFamily: 'Nunito-Bold' }}>{screen}</Text>
+
+        {/* Screen name */}
+        <Text style={styles.screenNameText}>{screen}</Text>
+
+        {/* Settings button */}
         <TouchableOpacity style={styles.iconContainer}>
           <Image source={SettingsIcon} style={{ width: 16, height: 16, }} />
         </TouchableOpacity>
+
       </View>
+
     </LinearGradient>
 
   );
 }
 
 const styles = StyleSheet.create({
+  // Styles for the container (header)
   container: {
     minHeight: 72,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
+  // Styles for the icons' container
   iconContainer: {
-    padding: 24
+    padding: 24,
+  },
+  // Styles for the screen name
+  screenNameText: {
+    color: Colors.accent3,
+    fontFamily: 'Nunito-Bold',
   }
 });
