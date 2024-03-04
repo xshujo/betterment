@@ -18,7 +18,7 @@ export default function Header({ screen }) {
         <TouchableOpacity style={styles.iconContainer}>
           <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
         </TouchableOpacity>
-        <Text style={{ color: Colors.accent3 }}>{screen}</Text>
+        <Text style={{ color: Colors.accent3, fontFamily: 'Nunito-Bold' }}>{screen}</Text>
         <TouchableOpacity style={styles.iconContainer}>
           <Image source={SettingsIcon} style={{ width: 16, height: 16, }} />
         </TouchableOpacity>

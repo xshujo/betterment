@@ -56,13 +56,13 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   dayText: {
+    fontFamily: 'Nunito-ExtraBold',
     fontSize: 36,
-    fontWeight: 'bold',
     color: Colors.accent2,
   },
   dateText: {
+    fontFamily: 'Nunito-Bold',
     fontSize: 24,
-    fontWeight: 'bold',
     color: Colors.accent3,
   },
   logContainer: {
