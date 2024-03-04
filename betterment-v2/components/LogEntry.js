@@ -38,6 +38,7 @@ export default function LogEntry({ category, entry }) {
 
   return (
     <>
+      {/* Structure for Activity entries */}
       {category === 'activity' && (
         <View style={styles.entryContainer}>
           <Text style={styles.activityNameText}>{entry.activityName}</Text>
@@ -45,6 +46,7 @@ export default function LogEntry({ category, entry }) {
         </View>
       )}
 
+      {/* Structure for Nutrition entries */}
       {/* Needs revision... */}
       {category === 'nutrition' && (
         <>
@@ -87,6 +89,7 @@ export default function LogEntry({ category, entry }) {
         </>
       )}
 
+      {/* Structure for Sleep entries */}
       {category === 'sleep' && (
         <View style={styles.sleepContainer}>
           <View style={styles.entryContainer}><Text style={styles.boldText}>Slept at</Text><Text>{formattedSleepTime}</Text></View>
@@ -95,6 +98,7 @@ export default function LogEntry({ category, entry }) {
         </View>
       )}
 
+      {/* Structure for Measurements entries */}
       {category === 'measurements' && (
         <View>
           <View style={styles.entryContainer}>
