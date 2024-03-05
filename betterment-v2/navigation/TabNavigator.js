@@ -23,8 +23,8 @@ export default function TabNavigator() {
         tabBar={() => <Footer />}
       >
         <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
-        <Tab.Screen name="Log" component={LogScreen} options={{ title: 'Log' }} />
         <Tab.Screen name="Diary" component={DiaryScreen} options={{ title: 'Diary' }} />
+        <Tab.Screen name="Log" component={LogScreen} options={{ title: 'Log' }} />
         <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }} />
       </Tab.Navigator>
     </NavigationContainer>

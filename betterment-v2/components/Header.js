@@ -3,60 +3,51 @@
 import React from "react";
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
+
+import { useCurrentScreen } from "../hooks/useCurrentScreen";
 import { Colors } from "../constants/Colors";
 
 import GoBackIcon from "../assets/images/icon.png";
 import SettingsIcon from "../assets/images/icon.png";
-import { useCurrentScreen } from "../hooks/useCurrentScreen";
 
 export default function Header() {
   const currentScreen = useCurrentScreen();
 
   return (
-    // Gradient; Might remove
-    <LinearGradient colors={['#FFFFFF', '#F7B2B9']}
-      start={[0, 1]}
-      end={[0, 0]}>
+    <View style={styles.container}>
 
-      {/* Container */}
-      <View style={styles.container}>
+      {/* Go back button */}
+      <TouchableOpacity style={styles.iconContainer}>
+        <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
+      </TouchableOpacity>
 
-        {/* Go back button */}
-        <TouchableOpacity style={styles.iconContainer}>
-          <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
-        </TouchableOpacity>
+      {/* Screen name */}
+      <Text style={styles.screenNameText}>{currentScreen}</Text>
 
-        {/* Screen name */}
-        <Text style={styles.screenNameText}>{currentScreen}</Text>
+      {/* Settings button */}
+      <TouchableOpacity style={styles.iconContainer}>
+        <Image source={SettingsIcon} style={{ width: 16, height: 16, }} />
+      </TouchableOpacity>
 
-        {/* Settings button */}
-        <TouchableOpacity style={styles.iconContainer}>
-          <Image source={SettingsIcon} style={{ width: 16, height: 16, }} />
-        </TouchableOpacity>
-
-      </View>
-
-    </LinearGradient>
-
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   // Styles for the container (header)
   container: {
-    minHeight: 72,
+    minHeight: 120,
+    backgroundColor: Colors.accent1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   // Styles for the icons' container
   iconContainer: {
-    padding: 24,
+    padding: 32,
   },
   // Styles for the screen name
   screenNameText: {
-    color: Colors.accent3,
     fontFamily: 'Nunito-Bold',
   }
 });

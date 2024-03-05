@@ -26,9 +26,9 @@ export default function Footer() {
         <Image source={HomeIcon} style={{ width: 16, height: 16 }} />
       </TouchableOpacity>
 
-      {/* Log screen button */}
-      <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Log')}>
-        <Image source={LogIcon} style={{ width: 16, height: 16 }} />
+      {/* Diary screen button */}
+      <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Diary')}>
+        <Image source={DiaryIcon} style={{ width: 16, height: 16 }} />
       </TouchableOpacity>
 
       {/* Add entry button */}
@@ -36,9 +36,9 @@ export default function Footer() {
         <Image source={AddIcon} style={{ width: 16, height: 16 }} />
       </TouchableOpacity>
 
-      {/* Diary screen button */}
-      <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Diary')}>
-        <Image source={DiaryIcon} style={{ width: 16, height: 16 }} />
+      {/* Log screen button */}
+      <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Log')}>
+        <Image source={LogIcon} style={{ width: 16, height: 16 }} />
       </TouchableOpacity>
 
       {/* Profile screen button */}
@@ -52,14 +52,14 @@ export default function Footer() {
 const styles = StyleSheet.create({
   // Styles for the container (footer)
   container: {
-    minHeight: 72,
-    backgroundColor: Colors.primary,
+    minHeight: 100,
+    backgroundColor: Colors.accent1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   // Styles for the icons' container
   iconContainer: {
-    padding: 24,
+    padding: 24, // Add space
   }
 });
