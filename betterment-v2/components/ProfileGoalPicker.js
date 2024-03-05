@@ -6,7 +6,6 @@ import { Colors } from "../constants/Colors";
 export default function ProfileGoalPicker({ units, value, unit, onValueChange }) {
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.h2}>{container}</Text> */}
       <View style={styles.pickerContainer}>
         <TextInput
           style={styles.input}
@@ -39,21 +38,21 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   input: {
-    width: 100,
+    width: 150,
     fontSize: 16,
     fontFamily: 'Nunito-Medium',
-    paddingHorizontal: 8,
+    textAlign: 'right',
+    paddingHorizontal: 16,
   },
   pickerContainer: {
-    width: 200,
     backgroundColor: Colors.primaryLight,
-    // borderWidth: 2,
     borderRadius: 16,
-    // borderColor: Colors.accent2,
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   picker: {
-    width: 100,
-    // backgroundColor: 'white',
+    width: 120,
+    fontSize: 16,
   },
 });

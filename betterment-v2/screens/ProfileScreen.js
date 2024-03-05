@@ -2,17 +2,23 @@
 
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import ProfileGoalPicker from '../components/ProfileGoalPicker';
+
 import { Colors } from '../constants/Colors';
-import { Dim } from '../constants/Dimensions';
+
+import ProfileGoalPicker from '../components/ProfileGoalPicker';
 
 export default function ProfileScreen() {
   const [currentWeight, setCurrentWeight] = useState({ value: '', unit: 'kg' });
+  const [currentHeight, setCurrentHeight] = useState({ value: '', unit: 'cm' }); // Needs formating for inches
   const [nutritionGoal, setNutritionGoal] = useState({ value: '', unit: 'g' });
   const [measurementsGoals, setMeasurementsGoals] = useState([]);
 
   const handleCurrentWeightChange = (value, unit) => {
     setCurrentWeight({ value, unit });
+  };
+
+  const handleCurrentHeightChange = (value, unit) => {
+    setCurrentHeight({ value, unit });
   };
 
   const handleNutritionGoalChange = (value, unit) => {
@@ -38,6 +44,15 @@ export default function ProfileScreen() {
             onValueChange={handleCurrentWeightChange}
           />
         </View>
+        <View style={styles.goalsContainer}>
+          <Text style={styles.h2}>Height</Text>
+          <ProfileGoalPicker
+            units={['cm', 'in']}
+            value={currentHeight.value}
+            unit={currentHeight.unit}
+            onValueChange={handleCurrentHeightChange}
+          />
+        </View>
 
         <Text style={styles.h1}>My goals</Text>
         <View style={styles.goalsContainer}>
@@ -61,7 +76,7 @@ export default function ProfileScreen() {
             />
           ))}
           <TouchableOpacity onPress={() => setMeasurementsGoals([...measurementsGoals, { value: '', unit: 'cm' }])}>
-            <Text>Add Measurements Goal</Text>
+            <Text style={styles.addMeasurementGoal}>Add measurement goal +</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -73,18 +88,24 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.accent1,
     padding: 24,
+    paddingTop: 0,
     gap: 16,
   },
   h1: {
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 24,
+    textAlign: 'center',
   },
   h2: {
     fontFamily: 'Nunito-Bold',
     fontSize: 18,
+    textAlign: 'center',
     paddingLeft: 8,
   },
   goalsContainer: {
     gap: 8,
+  },
+  addMeasurementGoal: {
+    color: Colors.primary,
   }
 });
