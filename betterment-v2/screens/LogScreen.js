@@ -26,8 +26,9 @@ export default function LogScreen() {
           <LinearGradient colors={['#FED3D4', '#EEFFF3']}
             start={[0, 1]}
             end={[1, 0]}
-            style={{ borderRadius: 16 }}>
-            <View style={styles.logContainer} key={category}>
+            style={{ borderRadius: 16 }}
+            key={category}>
+            <View style={styles.logContainer}>
               <Text style={styles.categoryText}>{category}</Text>
               {category === 'activity' && (<Text style={styles.countText}>Exercise count: </Text>)}
               {category === 'nutrition' && (<Text style={styles.countText}>Meal count: </Text>)}
