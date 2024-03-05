@@ -48,7 +48,7 @@ export default function LogScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white', // Temp; set the background color directly in App
+    backgroundColor: Colors.accent1,
     padding: 24,
     alignItems: 'stretch',
     gap: 16,
