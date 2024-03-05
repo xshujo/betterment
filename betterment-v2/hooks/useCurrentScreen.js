@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigationState } from '@react-navigation/native';
 
-export const useCurrentScreen = () => {
+export function useCurrentScreen() {
     const [currentScreen, setCurrentScreen] = useState('');
 
     const routeName = useNavigationState((state) => {
