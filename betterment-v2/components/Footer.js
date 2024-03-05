@@ -2,18 +2,16 @@
 
 import React from "react";
 
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Colors } from "../constants/Colors";
 
-import HomeIcon from "../assets/images/icon.png";
-import LogIcon from "../assets/images/icon.png";
-import AddIcon from "../assets/images/icon.png";
-import DiaryIcon from "../assets/images/icon.png";
-import ProfileIcon from "../assets/images/icon.png";
+import { Colors } from "../constants/Colors";
+import { AddIcon, DiaryIcon, HomeIcon, LogIcon, ProfileIcon } from "./SvgIcon";
+import { useCurrentScreen } from "../hooks/useCurrentScreen";
 
 export default function Footer() {
   const navigation = useNavigation();
+  const currentScreen = useCurrentScreen();
 
   const navigateToScreen = (screenName) => {
     navigation.navigate(screenName);
@@ -23,27 +21,27 @@ export default function Footer() {
     <View style={styles.container}>
       {/* Home screen button */}
       <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Home')}>
-        <Image source={HomeIcon} style={{ width: 16, height: 16 }} />
+        <HomeIcon fill={currentScreen === 'Home' || !currentScreen ? Colors.primary : Colors.accent2} />
       </TouchableOpacity>
 
       {/* Diary screen button */}
       <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Diary')}>
-        <Image source={DiaryIcon} style={{ width: 16, height: 16 }} />
+        <DiaryIcon fill={currentScreen === 'Diary' ? Colors.primary : Colors.accent2} />
       </TouchableOpacity>
 
       {/* Add entry button */}
       <TouchableOpacity style={styles.iconContainer}>
-        <Image source={AddIcon} style={{ width: 16, height: 16 }} />
+        <AddIcon />
       </TouchableOpacity>
 
       {/* Log screen button */}
       <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Log')}>
-        <Image source={LogIcon} style={{ width: 16, height: 16 }} />
+        <LogIcon fill={currentScreen === 'Log' ? Colors.primary : Colors.accent2} />
       </TouchableOpacity>
 
       {/* Profile screen button */}
       <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Profile')}>
-        <Image source={ProfileIcon} style={{ width: 16, height: 16 }} />
+        <ProfileIcon fill={currentScreen === 'Profile' ? Colors.primary : Colors.accent2} />
       </TouchableOpacity>
     </View>
   );

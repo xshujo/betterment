@@ -7,7 +7,7 @@
 // }
 
 export const Colors = {
-    primary: '#EEFFF3',
+    primary: '#99BBA4', // ...
     secondary: '#F7B2B9',
     accent1: '#FFFFFF',
     accent2: '#999999',
