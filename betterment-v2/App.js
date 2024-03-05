@@ -1,13 +1,7 @@
 import React from 'react';
 import { useFonts } from 'expo-font';
-import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
-import { Colors } from './constants/Colors';
-import { Dim } from './constants/Dimensions';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
-import DiaryScreen from './screens/DiaryScreen';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import LogScreen from './screens/LogScreen';
 import TabNavigator from './navigation/TabNavigator';
 
 export default function App() {
@@ -50,7 +44,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch'
   },
   screenContainer: {
-    backgroundColor: 'white', // Temp
     flex: 1
   }
 });
