@@ -38,9 +38,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      {/* <View style={styles.screenContainer}> */}
       <TabNavigator />
-      {/* </View> */}
     </View>
   );
 }
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch'
   },
   screenContainer: {
-    backgroundColor: 'aliceblue', // Temp
+    backgroundColor: 'white', // Temp
     flex: 1
   }
 });
