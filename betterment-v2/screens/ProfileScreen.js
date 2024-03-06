@@ -1,13 +1,41 @@
 // This component is a screen that displays the user's informations and allows them to set their goals //
 
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { Colors } from '../constants/Colors';
 
 import ProfileGoalPicker from '../components/ProfileGoalPicker';
+import OptionPicker from '../components/OptionPicker';
 
 export default function ProfileScreen() {
+  const weightUnit = ["kg", "lbs"];
+  const heightUnit = ["cm", "ft"];
+  const measurementUnit = ["cm, in"];
+  const foodUnit = ["cal", "g", "mg"];
+  const nutrient = [
+    "calories",
+    "fat",
+    "saturated fat",
+    "trans fat",
+    "cholesterol",
+    "sodium",
+    "carbohydrate",
+    "fiber",
+    "sugar",
+    "protein",
+    "calcium",
+    "iron",
+    "potassium",
+    "vitamin A",
+    "vitamin D"
+  ];
+
+  const handleWeightUnitSelect = (option) => {
+    console.log("Selected weight unit:", option);
+    // Add your logic here
+  };
+
   const [currentWeight, setCurrentWeight] = useState({ value: '', unit: 'kg' });
   const [currentHeight, setCurrentHeight] = useState({ value: '', unit: 'cm' }); // Needs formating for inches
   const [nutritionGoal, setNutritionGoal] = useState({ value: '', unit: 'g' });
@@ -33,7 +61,13 @@ export default function ProfileScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
+
       <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.multiInputContainer}>
+          <TextInput style={styles.textInput} />
+          <OptionPicker options={nutrient} onSelect={handleWeightUnitSelect} />
+        </View>
+
         <Text style={styles.h1}>About me</Text>
         <View style={styles.goalsContainer}>
           <Text style={styles.h2}>Weight</Text>
@@ -101,6 +135,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     paddingLeft: 8,
+  },
+  multiInputContainer: {
+    width: 144,
+    backgroundColor: Colors.accent2,
+    flexDirection: 'row',
+    zIndex: 5,
+  },
+  textInput: {
+    width: 72,
+    textAlign: 'right',
+    paddingHorizontal: 16,
   },
   goalsContainer: {
     gap: 8,
