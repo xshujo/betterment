@@ -13,23 +13,6 @@ export default function ProfileScreen() {
   const heightUnit = ["cm", "ft"];
   const measurementUnit = ["cm, in"];
   const foodUnit = ["cal", "g", "mg"];
-  const nutrient = [
-    "calories",
-    "fat",
-    "saturated fat",
-    "trans fat",
-    "cholesterol",
-    "sodium",
-    "carbohydrate",
-    "fiber",
-    "sugar",
-    "protein",
-    "calcium",
-    "iron",
-    "potassium",
-    "vitamin A",
-    "vitamin D"
-  ];
 
   const handleWeightUnitSelect = (option) => {
     console.log("Selected weight unit:", option);
@@ -65,7 +48,7 @@ export default function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.multiInputContainer}>
           <TextInput style={styles.textInput} />
-          <OptionPicker options={nutrient} onSelect={handleWeightUnitSelect} />
+          <OptionPicker options={foodUnit} onSelect={handleWeightUnitSelect} defaultUnit={"cal"} />
         </View>
 
         <Text style={styles.h1}>About me</Text>

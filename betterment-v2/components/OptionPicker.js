@@ -1,26 +1,43 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
 import { Colors } from "../constants/Colors";
 
-export default function OptionPicker({ options, onSelect }) {
+export default function OptionPicker({ options, onSelect, defaultUnit }) {
+  const [showOptions, setShowOptions] = useState(false);
+  const [selectedUnit, setSelectedUnit] = useState(defaultUnit);
+
+  function handleToggleOptions() {
+    setShowOptions(!showOptions);
+  }
+
   function handleOptionPress(option) {
     onSelect(option);
+    setSelectedUnit(option);
+    setShowOptions(false);
   };
+
+  function handleOutsidePress() {
+    setShowOptions(false);
+  }
 
   return (
     <>
-      <TouchableOpacity style={styles.inputContainer}>
-        <Text style={styles.inputText}>Unit</Text>
+      <TouchableOpacity style={styles.inputContainer} onPress={handleToggleOptions}>
+        <Text style={styles.inputText}>{selectedUnit}</Text>
       </TouchableOpacity>
-      <View style={styles.optionsContainer}>
-        <ScrollView>
-          {options.map((option, index) => (
-            <TouchableOpacity style={styles.optionTextContainer} key={index} onPress={handleOptionPress(option)}>
-              <Text style={styles.optionText}>{option}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+      {showOptions && (
+        <TouchableWithoutFeedback onPress={handleOutsidePress}>
+          <View style={styles.optionsContainer}>
+            <ScrollView>
+              {options.map((option, index) => (
+                <TouchableOpacity style={styles.optionTextContainer} key={index} onPress={() => handleOptionPress(option)}>
+                  <Text style={styles.optionText}>{option}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        </TouchableWithoutFeedback>
+      )}
     </>
   );
 }
