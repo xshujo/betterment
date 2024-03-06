@@ -7,6 +7,7 @@ import { Colors } from '../constants/Colors';
 
 import ProfileGoalPicker from '../components/ProfileGoalPicker';
 import OptionPicker from '../components/OptionPicker';
+import Input from '../components/Input';
 
 export default function ProfileScreen() {
   const weightUnit = ["kg", "lbs"];
@@ -14,13 +15,18 @@ export default function ProfileScreen() {
   const measurementUnit = ["cm, in"];
   const foodUnit = ["cal", "g", "mg"];
 
-  const handleWeightUnitSelect = (option) => {
+  function handleWeightUnitSelect(option) {
+    console.log("Selected weight unit:", option);
+    // Add your logic here
+  };
+
+  function handleHeightUnitSelect(option) {
     console.log("Selected weight unit:", option);
     // Add your logic here
   };
 
   const [currentWeight, setCurrentWeight] = useState({ value: '', unit: 'kg' });
-  const [currentHeight, setCurrentHeight] = useState({ value: '', unit: 'cm' }); // Needs formating for inches
+  const [currentHeight, setCurrentHeight] = useState({ value: '', unit: 'cm' });
   const [nutritionGoal, setNutritionGoal] = useState({ value: '', unit: 'g' });
   const [measurementsGoals, setMeasurementsGoals] = useState([]);
 
@@ -46,41 +52,28 @@ export default function ProfileScreen() {
     <View style={{ flex: 1, backgroundColor: 'white' }}>
 
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.multiInputContainer}>
-          <TextInput style={styles.textInput} />
-          <OptionPicker options={foodUnit} onSelect={handleWeightUnitSelect} defaultUnit={"cal"} />
-        </View>
-
         <Text style={styles.h1}>About me</Text>
-        <View style={styles.goalsContainer}>
-          <Text style={styles.h2}>Weight</Text>
-          <ProfileGoalPicker
-            units={['kg', 'lbs']}
-            value={currentWeight.value}
-            unit={currentWeight.unit}
-            onValueChange={handleCurrentWeightChange}
-          />
-        </View>
-        <View style={styles.goalsContainer}>
-          <Text style={styles.h2}>Height</Text>
-          <ProfileGoalPicker
-            units={['cm', 'in']}
-            value={currentHeight.value}
-            unit={currentHeight.unit}
-            onValueChange={handleCurrentHeightChange}
-          />
+        <View style={styles.categoryContainer}>
+          <Input inputType="About Me" inputName="Height" charLimit={5} />
+          <Input inputType="About Me" inputName="Weight" charLimit={3} />
         </View>
 
         <Text style={styles.h1}>My goals</Text>
-        <View style={styles.goalsContainer}>
-          <Text style={styles.h2}>Nutrition</Text>
-          <ProfileGoalPicker
-            units={['g', 'mg', 'cal']}
-            value={nutritionGoal.value}
-            unit={nutritionGoal.unit}
-            onValueChange={handleNutritionGoalChange}
-          />
+        <Text style={styles.h2}>Activity</Text>
+        <View style={styles.categoryContainer}>
+          <Input inputType="Goal" inputName="Duration" unit="min" charLimit={3} />
         </View>
+
+        <Text style={styles.h2}>Nutrition</Text>
+        <View style={styles.categoryContainer}>
+          <Input inputType="Goal" inputName="Calories" unit="cal" charLimit={4} />
+          <Input inputType="Goal" inputName="Fats" unit="g" charLimit={3} />
+          <Input inputType="Goal" inputName="Carbohydrates" unit="g" charLimit={3} />
+          <Input inputType="Goal" inputName="Proteins" unit="g" charLimit={3} />
+        </View>
+
+
+
         <View style={styles.goalsContainer}>
           <Text style={styles.h2}>Measurements</Text>
           {measurementsGoals.map((goal, index) => (
@@ -111,24 +104,49 @@ const styles = StyleSheet.create({
   h1: {
     fontFamily: 'Nunito-ExtraBold',
     fontSize: 24,
-    textAlign: 'center',
+    marginTop: 16,
   },
   h2: {
     fontFamily: 'Nunito-Bold',
     fontSize: 18,
-    textAlign: 'center',
-    paddingLeft: 8,
+  },
+  h3: {
+    fontFamily: 'Nunito-Bold'
+  },
+  p: {
+    fontFamily: 'Nunito-Regular',
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    rowGap: 20,
+  },
+  categoryItem: {
+    gap: 4,
+  },
+  goalFlex: {
+    width: 144,
+    backgroundColor: Colors.primary,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
   },
   multiInputContainer: {
     width: 144,
-    backgroundColor: Colors.accent2,
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     zIndex: 5,
   },
   textInput: {
     width: 72,
-    textAlign: 'right',
-    paddingHorizontal: 16,
+    backgroundColor: Colors.accent1,
+    fontFamily: 'Nunito-Regular',
+    borderColor: Colors.primary,
+    borderWidth: 2,
+    paddingVertical: 8,
+    paddingLeft: 16,
   },
   goalsContainer: {
     gap: 8,
