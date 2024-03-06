@@ -9,17 +9,33 @@ import { Colors } from "../constants/Colors";
 
 import GoBackIcon from "../assets/images/icon.png";
 import SettingsIcon from "../assets/images/icon.png";
+import { useNavigation, useRoute } from "@react-navigation/core";
 
 export default function Header() {
   const currentScreen = useCurrentScreen();
 
+  const navigation = useNavigation(); // Initialize navigation
+  const route = useRoute();
+
+  const handleGoBack = () => {
+    navigation.navigate('Home'); // Navigate to the home screen
+  };
+
+  const renderGoBackButton = () => {
+    if (route.name !== 'Home') { // Check if the current screen is not the home screen
+      return (
+        <TouchableOpacity style={styles.iconContainer} onPress={handleGoBack}>
+          <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
+        </TouchableOpacity>
+      );
+    } else {
+      return <View style={{ width: 80 }} />; // Render an empty View component if on the home screen
+    }
+  };
+
   return (
     <View style={styles.container}>
-
-      {/* Go back button */}
-      <TouchableOpacity style={styles.iconContainer}>
-        <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
-      </TouchableOpacity>
+      {renderGoBackButton()}{/* Render the "Go back" button */}
 
       {/* Screen name */}
       <Text style={styles.screenNameText}>{currentScreen}</Text>
@@ -28,7 +44,6 @@ export default function Header() {
       <TouchableOpacity style={styles.iconContainer}>
         <Image source={SettingsIcon} style={{ width: 16, height: 16, }} />
       </TouchableOpacity>
-
     </View>
   );
 }
