@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "category": "activity",
+    "name": "Duration",
+    "value": ""
+  },
+  {
+    "id": 2,
+    "category": "nutrition",
+    "name": "Calories",
+    "value": ""
+  },
+  {
+    "id": 3,
+    "category": "nutrition",
+    "name": "Fats",
+    "value": ""
+  },
+  {
+    "id": 4,
+    "category": "nutrition",
+    "name": "Carbohydrates",
+    "value": ""
+  },
+  {
+    "id": 5,
+    "category": "nutrition",
+    "name": "Proteins",
+    "value": ""
+  },
+  {
+    "id": 6,
+    "category": "measurements",
+    "name": "weight",
+    "value": "",
+    "unit": "lbs"
+  }
+]
