@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../constants/Colors";
 
 export default function OptionPicker({ options, onSelect, defaultUnit }) {
@@ -16,25 +16,19 @@ export default function OptionPicker({ options, onSelect, defaultUnit }) {
     setShowOptions(false);
   };
 
-  function handleOutsidePress() {
-    setShowOptions(false);
-  }
-
   return (
     <>
       <TouchableOpacity style={styles.inputContainer} onPress={handleToggleOptions}>
         <Text style={styles.inputText}>{selectedUnit} {showOptions ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
       </TouchableOpacity>
       {showOptions && (
-        <TouchableWithoutFeedback onPress={handleOutsidePress}>
-          <View style={styles.optionsContainer}>
-            {options.map((option, index) => (
-              <TouchableOpacity style={styles.optionTextContainer} key={index} onPress={() => handleOptionPress(option)}>
-                <Text style={styles.optionText}>{option}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.optionsContainer}>
+          {options.map((option, index) => (
+            <TouchableOpacity key={index} onPress={() => handleOptionPress(option)}>
+              <Text style={styles.optionText}>{option}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       )}
     </>
   );
@@ -42,9 +36,9 @@ export default function OptionPicker({ options, onSelect, defaultUnit }) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: 72,
+    width: 75,
+    backgroundColor: Colors.primary,
     padding: 16,
-    flexDirection: 'row',
     alignItems: 'center',
   },
   inputText: {
@@ -54,22 +48,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   optionsContainer: {
-    width: 74,
-    maxHeight: 150,
-    backgroundColor: Colors.accent1,
-    borderColor: Colors.primary,
-    borderWidth: 2,
-    position: 'absolute',
-    top: 51,
-    right: 0,
-  },
-  optionTextContainer: {
     width: '100%',
-    backgroundColor: Colors.accent1,
+    borderTopColor: Colors.primary,
+    borderTopWidth: 1,
+    padding: 16,
+    gap: 16,
   },
   optionText: {
     fontFamily: 'Nunito-Bold',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
   }
 });

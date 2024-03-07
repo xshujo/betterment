@@ -6,7 +6,6 @@ export default function Input({ inputName, unit, charLimit }) {
   const weightUnit = ["kg", "lbs"];
   const heightUnit = ["cm", "ft"];
   const measurementUnit = ["cm, in"];
-  const foodUnit = ["cal", "g", "mg"];
 
   return (
     <View style={styles.categoryItem}>
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.accent1,
     fontFamily: 'Nunito-Regular',
     borderColor: Colors.primary,
-    borderWidth: 2,
+    borderWidth: 1,
     paddingVertical: 8,
     paddingLeft: 16,
   },
