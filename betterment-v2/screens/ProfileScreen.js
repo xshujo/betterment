@@ -25,68 +25,68 @@ export default function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.h1}>About me</Text>
         <View style={styles.categoryContainer}>
-          <Input inputType="About Me" inputName="Height" charLimit={5} />
-          <Input inputType="About Me" inputName="Weight" charLimit={5} />
+          <Input inputName="Height" unit="cm" charLimit={5} />
+          <Input inputName="Weight" unit="lbs" charLimit={5} />
         </View>
 
         <Text style={styles.h1}>My goals</Text>
         <Text style={styles.h2}>Activity</Text>
         <View style={styles.categoryContainer}>
-          <Input inputType="Goal" inputName="Duration" unit="min" charLimit={3} />
+          <Input inputName="Duration" unit="min" charLimit={3} />
         </View>
 
         <Text style={styles.h2}>Nutrition</Text>
         <View style={styles.categoryContainer}>
-          <Input inputType="Goal" inputName="Calories" unit="cal" charLimit={4} />
-          <Input inputType="Goal" inputName="Fats" unit="g" charLimit={3} />
-          <Input inputType="Goal" inputName="Carbohydrates" unit="g" charLimit={3} />
-          <Input inputType="Goal" inputName="Proteins" unit="g" charLimit={3} />
+          <Input inputName="Calories" unit="cal" charLimit={4} />
+          <Input inputName="Fats" unit="g" charLimit={3} />
+          <Input inputName="Carbohydrates" unit="g" charLimit={3} />
+          <Input inputName="Proteins" unit="g" charLimit={3} />
         </View>
         <TouchableOpacity onPress={handleToggleNutritionGoals}>
           <Text style={styles.showMoreText}>Show {showNutritionGoals ? "less" : "more"} nutrition goals {showNutritionGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
         </TouchableOpacity>
         {showNutritionGoals && (
           <View style={styles.categoryContainer}>
-            <Input inputType="Goal" inputName="Saturated fat" unit="g" charLimit={2} />
-            <Input inputType="Goal" inputName="Trans fat" unit="g" charLimit={3} />
-            <Input inputType="Goal" inputName="Cholesterol" unit="mg" charLimit={3} />
-            <Input inputType="Goal" inputName="Sugar" unit="g" charLimit={2} />
-            <Input inputType="Goal" inputName="Fiber" unit="g" charLimit={2} />
-            <Input inputType="Goal" inputName="Sodium" unit="mg" charLimit={4} />
-            <Input inputType="Goal" inputName="Calcium" unit="mg" charLimit={4} />
-            <Input inputType="Goal" inputName="Potassium" unit="mg" charLimit={4} />
-            <Input inputType="Goal" inputName="Iron" unit="mg" charLimit={3} />
-            <Input inputType="Goal" inputName="Vitamin C" unit="mg" charLimit={4} />
-            <Input inputType="Goal" inputName="Vitamin A" unit="mcg" charLimit={3} />
+            <Input inputName="Saturated fat" unit="g" charLimit={2} />
+            <Input inputName="Trans fat" unit="g" charLimit={3} />
+            <Input inputName="Cholesterol" unit="mg" charLimit={3} />
+            <Input inputName="Sugar" unit="g" charLimit={2} />
+            <Input inputName="Fiber" unit="g" charLimit={2} />
+            <Input inputName="Sodium" unit="mg" charLimit={4} />
+            <Input inputName="Calcium" unit="mg" charLimit={4} />
+            <Input inputName="Potassium" unit="mg" charLimit={4} />
+            <Input inputName="Iron" unit="mg" charLimit={3} />
+            <Input inputName="Vitamin C" unit="mg" charLimit={4} />
+            <Input inputName="Vitamin A" unit="mcg" charLimit={3} />
           </View>
         )}
 
         <Text style={styles.h2}>Sleep</Text>
         <View style={styles.categoryContainer}>
-          <Input inputType="Goal" inputName="Duration" unit="h" charLimit={2} />
-          <Input inputType="Goal" inputName="" unit="min" charLimit={2} />
+          <Input inputName="Duration" unit="h" charLimit={2} />
+          <Input inputName="" unit="min" charLimit={2} />
         </View>
 
         <Text style={styles.h2}>Measurements</Text>
         <View style={styles.categoryContainer}>
-          <Input inputType="About Me" inputName="Weight" charLimit={5} />
+          <Input inputType="Goal" inputName="Weight" unit="lbs" charLimit={5} />
         </View>
         <TouchableOpacity onPress={handleToggleMeasurementGoals}>
           <Text style={styles.showMoreText}>Show {showMeasurementGoals ? "less" : "more"} measurement goals {showMeasurementGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
         </TouchableOpacity>
         {showMeasurementGoals && (
           <View style={styles.categoryContainer}>
-            <Input inputType="Goal" inputName="Neck" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Upper arms" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Forearms" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Bust" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Band" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Waist" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Belly" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Butt" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Hips" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Thighs" unit="cm" charLimit={3} />
-            <Input inputType="Goal" inputName="Calves" unit="cm" charLimit={3} />
+            <Input inputName="Neck" unit="cm" charLimit={3} />
+            <Input inputName="Upper arms" unit="cm" charLimit={3} />
+            <Input inputName="Forearms" unit="cm" charLimit={3} />
+            <Input inputName="Bust" unit="cm" charLimit={3} />
+            <Input inputName="Band" unit="cm" charLimit={3} />
+            <Input inputName="Waist" unit="cm" charLimit={3} />
+            <Input inputName="Belly" unit="cm" charLimit={3} />
+            <Input inputName="Butt" unit="cm" charLimit={3} />
+            <Input inputName="Hips" unit="cm" charLimit={3} />
+            <Input inputName="Thighs" unit="cm" charLimit={3} />
+            <Input inputName="Calves" unit="cm" charLimit={3} />
           </View>
         )}
       </ScrollView>
