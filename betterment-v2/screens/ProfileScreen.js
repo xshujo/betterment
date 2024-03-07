@@ -1,15 +1,49 @@
 // This component is a screen that displays the user's informations and allows them to set their goals //
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Colors } from '../constants/Colors';
 
 import Input from '../components/Input';
+import { loadSettings } from '../utils/storage';
+import { useFocusEffect } from '@react-navigation/core';
 
 export default function ProfileScreen() {
   const [showNutritionGoals, setShowNutritionGoals] = useState(false);
   const [showMeasurementGoals, setShowMeasurementGoals] = useState(false);
+  const [units, setUnits] = useState({
+    weight: "lbs",
+    height: "cm",
+    measurement: "cm"
+  });
+
+  useEffect(() => {
+    // Load initial settings when the component mounts
+    loadInitialSettings();
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      loadInitialSettings();
+    }, [])
+  );
+
+  const loadInitialSettings = async () => {
+    try {
+      const settings = await loadSettings();
+      if (settings) {
+        // Set units from settings
+        setUnits({
+          weight: settings.units.find(unit => unit.type === "weight").unit,
+          height: settings.units.find(unit => unit.type === "height").unit,
+          measurement: settings.units.find(unit => unit.type === "measurement").unit,
+        });
+      }
+    } catch (error) {
+      console.error("Error loading settings:", error);
+    }
+  };
 
   function handleToggleNutritionGoals() {
     setShowNutritionGoals(!showNutritionGoals);
@@ -25,8 +59,8 @@ export default function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.h1}>About me</Text>
         <View style={styles.categoryContainer}>
-          <Input inputName="Height" unit="cm" charLimit={5} />
-          <Input inputName="Weight" unit="lbs" charLimit={5} />
+          <Input inputName="Height" unit={units.weight} charLimit={5} />
+          <Input inputName="Weight" unit={units.height} charLimit={5} />
         </View>
 
         <Text style={styles.h1}>My goals</Text>
@@ -69,24 +103,24 @@ export default function ProfileScreen() {
 
         <Text style={styles.h2}>Measurements</Text>
         <View style={styles.categoryContainer}>
-          <Input inputType="Goal" inputName="Weight" unit="lbs" charLimit={5} />
+          <Input inputType="Goal" inputName="Weight" unit={units.weight} charLimit={5} />
         </View>
         <TouchableOpacity onPress={handleToggleMeasurementGoals}>
           <Text style={styles.showMoreText}>Show {showMeasurementGoals ? "less" : "more"} measurement goals {showMeasurementGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
         </TouchableOpacity>
         {showMeasurementGoals && (
           <View style={styles.categoryContainer}>
-            <Input inputName="Neck" unit="cm" charLimit={3} />
-            <Input inputName="Upper arms" unit="cm" charLimit={3} />
-            <Input inputName="Forearms" unit="cm" charLimit={3} />
-            <Input inputName="Bust" unit="cm" charLimit={3} />
-            <Input inputName="Band" unit="cm" charLimit={3} />
-            <Input inputName="Waist" unit="cm" charLimit={3} />
-            <Input inputName="Belly" unit="cm" charLimit={3} />
-            <Input inputName="Butt" unit="cm" charLimit={3} />
-            <Input inputName="Hips" unit="cm" charLimit={3} />
-            <Input inputName="Thighs" unit="cm" charLimit={3} />
-            <Input inputName="Calves" unit="cm" charLimit={3} />
+            <Input inputName="Neck" unit={units.measurement} charLimit={3} />
+            <Input inputName="Upper arms" unit={units.measurement} charLimit={3} />
+            <Input inputName="Forearms" unit={units.measurement} charLimit={3} />
+            <Input inputName="Bust" unit={units.measurement} charLimit={3} />
+            <Input inputName="Band" unit={units.measurement} charLimit={3} />
+            <Input inputName="Waist" unit={units.measurement} charLimit={3} />
+            <Input inputName="Belly" unit={units.measurement} charLimit={3} />
+            <Input inputName="Butt" unit={units.measurement} charLimit={3} />
+            <Input inputName="Hips" unit={units.measurement} charLimit={3} />
+            <Input inputName="Thighs" unit={units.measurement} charLimit={3} />
+            <Input inputName="Calves" unit={units.measurement} charLimit={3} />
           </View>
         )}
       </ScrollView>

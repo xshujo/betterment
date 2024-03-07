@@ -1,27 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../constants/Colors";
 import OptionPicker from "../components/OptionPicker";
+import { loadSettings, saveSettings } from "../utils/storage";
 
 export default function SettingsScreen() {
-  const weightUnit = ["kg", "lbs"];
-  const heightUnit = ["cm", "ft"];
-  const measurementUnit = ["cm", "in"];
+  const [weightUnit, setWeightUnit] = useState("lbs");
+  const [heightUnit, setHeightUnit] = useState("cm");
+  const [measurementUnit, setMeasurementUnit] = useState("cm");
 
-  function handleWeightUnitSelect(option) {
+  useEffect(() => {
+    // Load initial settings when the component mounts
+    loadInitialSettings();
+  }, []);
+
+  const loadInitialSettings = async () => {
+    try {
+      const settings = await loadSettings();
+      if (settings) {
+        setWeightUnit(settings.units.find(unit => unit.type === "weight").unit);
+        setHeightUnit(settings.units.find(unit => unit.type === "height").unit);
+        setMeasurementUnit(settings.units.find(unit => unit.type === "measurement").unit);
+      } else {
+        // If no settings are found, provide default values
+        console.log('No settings found. Using default values.');
+        setWeightUnit("lbs");
+        setHeightUnit("cm");
+        setMeasurementUnit("cm");
+      }
+    } catch (error) {
+      console.error("Error loading settings:", error);
+    }
+  };
+
+  const handleWeightUnitSelect = async (option) => {
     console.log("Selected weight unit:", option);
-    // Add your logic here
+    setWeightUnit(option);
+    await saveSettingsToStorage("weight", option);
   };
 
-  function handleHeightUnitSelect(option) {
+  const handleHeightUnitSelect = async (option) => {
     console.log("Selected height unit:", option);
-    // Add your logic here
+    setHeightUnit(option);
+    await saveSettingsToStorage("height", option);
   };
 
-  function handleMeasurementUnitSelect(option) {
+  const handleMeasurementUnitSelect = async (option) => {
     console.log("Selected measurement unit:", option);
-    // Add your logic here
+    setMeasurementUnit(option);
+    await saveSettingsToStorage("measurement", option);
   };
+
+  const saveSettingsToStorage = async (type, unit) => {
+    try {
+      let settings = await loadSettings();
+      if (!settings) {
+        // Initialize settings with default values
+        settings = {
+          units: [
+            { id: 1, type: "weight", unit: "lbs" },
+            { id: 2, type: "height", unit: "cm" },
+            { id: 3, type: "measurement", unit: "cm" }
+          ]
+        };
+      }
+
+      // Update the units based on the provided type and unit
+      const updatedUnits = settings.units.map(u => {
+        if (u.type === type) {
+          return { ...u, unit };
+        }
+        return u;
+      });
+
+      // Update the settings with the updated units
+      await saveSettings({ ...settings, units: updatedUnits });
+
+      // Log the updated settings to the console
+      console.log("Updated settings:", { ...settings, units: updatedUnits });
+    } catch (error) {
+      console.error("Error saving settings:", error);
+    }
+  };
+
+
 
   return (
     <View style={styles.container}>
@@ -30,15 +92,15 @@ export default function SettingsScreen() {
         <View style={styles.categoryContainer}>
           <View style={styles.settingContainer}>
             <Text style={styles.settingText}>Weight unit</Text>
-            <OptionPicker options={weightUnit} onSelect={handleWeightUnitSelect} defaultUnit={"lbs"} />
+            <OptionPicker options={["kg", "lbs"]} onSelect={handleWeightUnitSelect} defaultUnit={weightUnit} />
           </View>
           <View style={styles.settingContainer}>
             <Text style={styles.settingText}>Height unit</Text>
-            <OptionPicker options={heightUnit} onSelect={handleHeightUnitSelect} defaultUnit={"cm"} />
+            <OptionPicker options={["cm", "ft"]} onSelect={handleHeightUnitSelect} defaultUnit={heightUnit} />
           </View>
           <View style={styles.settingContainer}>
             <Text style={styles.settingText}>Measurement unit</Text>
-            <OptionPicker options={measurementUnit} onSelect={handleMeasurementUnitSelect} defaultUnit={"cm"} />
+            <OptionPicker options={["cm", "in"]} onSelect={handleMeasurementUnitSelect} defaultUnit={measurementUnit} />
           </View>
         </View>
       </ScrollView>
