@@ -16,15 +16,31 @@ export default function Header() {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const handleGoBack = () => {
-    navigation.navigate('Home');
+  function handleGoBack() {
+    navigation.goBack();
   };
 
-  const renderGoBackButton = () => {
+  function handleSettings() {
+    navigation.navigate('Settings');
+  };
+
+  function renderGoBackButton() {
     if (route.name !== 'Home') {
       return (
         <TouchableOpacity style={styles.iconContainer} onPress={handleGoBack}>
           <GoBackIcon />
+        </TouchableOpacity>
+      );
+    } else {
+      return <View style={{ width: 80 }} />;
+    }
+  };
+
+  function renderSettingsButton() {
+    if (route.name !== 'Settings') {
+      return (
+        <TouchableOpacity style={styles.iconContainer} onPress={handleSettings}>
+          <SettingsIcon />
         </TouchableOpacity>
       );
     } else {
@@ -41,9 +57,7 @@ export default function Header() {
       <Text style={styles.screenNameText}>{currentScreen}</Text>
 
       {/* Settings button */}
-      <TouchableOpacity style={styles.iconContainer}>
-        <SettingsIcon />
-      </TouchableOpacity>
+      {renderSettingsButton()}
     </View>
   );
 }
