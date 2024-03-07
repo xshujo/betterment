@@ -2,47 +2,81 @@
 
 import React from "react";
 
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Dim } from "../constants/Dimensions";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { useCurrentScreen } from "../hooks/useCurrentScreen";
 import { Colors } from "../constants/Colors";
 
-import GoBackIcon from "../assets/images/icon.png";
-import SettingsIcon from "../assets/images/icon.png";
+import { useNavigation, useRoute } from "@react-navigation/core";
+import { GoBackIcon, SettingsIcon } from "./SvgIcon";
 
-export default function Header({ screen }) {
+export default function Header() {
+  const currentScreen = useCurrentScreen();
+
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  function handleGoBack() {
+    navigation.goBack();
+  };
+
+  function handleSettings() {
+    navigation.navigate('Settings');
+  };
+
+  function renderGoBackButton() {
+    if (route.name !== 'Home') {
+      return (
+        <TouchableOpacity style={styles.iconContainer} onPress={handleGoBack}>
+          <GoBackIcon />
+        </TouchableOpacity>
+      );
+    } else {
+      return <View style={{ width: 80 }} />;
+    }
+  };
+
+  function renderSettingsButton() {
+    if (route.name !== 'Settings') {
+      return (
+        <TouchableOpacity style={styles.iconContainer} onPress={handleSettings}>
+          <SettingsIcon />
+        </TouchableOpacity>
+      );
+    } else {
+      return <View style={{ width: 80 }} />;
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.iconContainer}>
-        <Image source={GoBackIcon} style={{ width: 16, height: 16, }} />
-      </TouchableOpacity>
-      <Text>{screen}</Text>
-      <TouchableOpacity style={styles.iconContainer}>
-        <Image source={SettingsIcon} style={{ width: 16, height: 16, }} />
-      </TouchableOpacity>
+      {/* Go back button */}
+      {renderGoBackButton()}
+
+      {/* Screen name */}
+      <Text style={styles.screenNameText}>{currentScreen}</Text>
+
+      {/* Settings button */}
+      {renderSettingsButton()}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  // Styles for the container (header)
   container: {
-    minHeight: 72,
-    backgroundColor: 'red', // Temp
-    ...Platform.select({ // Might remove
-      ios: {
-        shadowColor: '#30200d',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
+    minHeight: 120,
+    backgroundColor: Colors.accent1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
+  // Styles for the icons' container
   iconContainer: {
-    padding: 24
+    padding: 32,
+  },
+  // Styles for the screen name
+  screenNameText: {
+    fontFamily: 'Nunito-Bold',
   }
 });
