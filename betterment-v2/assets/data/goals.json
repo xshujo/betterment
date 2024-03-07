@@ -31,6 +31,72 @@
   },
   {
     "id": 6,
+    "category": "nutrition",
+    "name": "Saturated fat",
+    "value": ""
+  },
+  {
+    "id": 7,
+    "category": "nutrition",
+    "name": "Trans fat",
+    "value": ""
+  },
+  {
+    "id": 8,
+    "category": "nutrition",
+    "name": "Cholesterol",
+    "value": ""
+  },
+  {
+    "id": 9,
+    "category": "nutrition",
+    "name": "Sugar",
+    "value": ""
+  },
+  {
+    "id": 10,
+    "category": "nutrition",
+    "name": "Fiber",
+    "value": ""
+  },
+  {
+    "id": 11,
+    "category": "nutrition",
+    "name": "Sodium",
+    "value": ""
+  },
+  {
+    "id": 12,
+    "category": "nutrition",
+    "name": "Calcium",
+    "value": ""
+  },
+  {
+    "id": 13,
+    "category": "nutrition",
+    "name": "Potassium",
+    "value": ""
+  },
+  {
+    "id": 14,
+    "category": "nutrition",
+    "name": "Iron",
+    "value": ""
+  },
+  {
+    "id": 15,
+    "category": "nutrition",
+    "name": "Vitamin C",
+    "value": ""
+  },
+  {
+    "id": 16,
+    "category": "nutrition",
+    "name": "Vitamin A",
+    "value": ""
+  },
+  {
+    "id": 17,
     "category": "measurements",
     "name": "weight",
     "value": "",

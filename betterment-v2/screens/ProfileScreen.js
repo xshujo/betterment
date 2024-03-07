@@ -1,52 +1,23 @@
 // This component is a screen that displays the user's informations and allows them to set their goals //
 
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Colors } from '../constants/Colors';
 
-import ProfileGoalPicker from '../components/ProfileGoalPicker';
-import OptionPicker from '../components/OptionPicker';
 import Input from '../components/Input';
 
 export default function ProfileScreen() {
-  const weightUnit = ["kg", "lbs"];
-  const heightUnit = ["cm", "ft"];
-  const measurementUnit = ["cm, in"];
-  const foodUnit = ["cal", "g", "mg"];
+  const [showNutritionGoals, setShowNutritionGoals] = useState(false);
+  const [showMeasurementGoals, setShowMeasurementGoals] = useState(false);
 
-  function handleWeightUnitSelect(option) {
-    console.log("Selected weight unit:", option);
-    // Add your logic here
-  };
+  function handleToggleNutritionGoals() {
+    setShowNutritionGoals(!showNutritionGoals);
+  }
 
-  function handleHeightUnitSelect(option) {
-    console.log("Selected weight unit:", option);
-    // Add your logic here
-  };
-
-  const [currentWeight, setCurrentWeight] = useState({ value: '', unit: 'kg' });
-  const [currentHeight, setCurrentHeight] = useState({ value: '', unit: 'cm' });
-  const [nutritionGoal, setNutritionGoal] = useState({ value: '', unit: 'g' });
-  const [measurementsGoals, setMeasurementsGoals] = useState([]);
-
-  const handleCurrentWeightChange = (value, unit) => {
-    setCurrentWeight({ value, unit });
-  };
-
-  const handleCurrentHeightChange = (value, unit) => {
-    setCurrentHeight({ value, unit });
-  };
-
-  const handleNutritionGoalChange = (value, unit) => {
-    setNutritionGoal({ value, unit });
-  };
-
-  const handleMeasurementsGoalChange = (index, value, unit) => {
-    const updatedGoals = [...measurementsGoals];
-    updatedGoals[index] = { value, unit };
-    setMeasurementsGoals(updatedGoals);
-  };
+  function handleToggleMeasurementGoals() {
+    setShowMeasurementGoals(!showMeasurementGoals);
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -55,7 +26,7 @@ export default function ProfileScreen() {
         <Text style={styles.h1}>About me</Text>
         <View style={styles.categoryContainer}>
           <Input inputType="About Me" inputName="Height" charLimit={5} />
-          <Input inputType="About Me" inputName="Weight" charLimit={3} />
+          <Input inputType="About Me" inputName="Weight" charLimit={5} />
         </View>
 
         <Text style={styles.h1}>My goals</Text>
@@ -71,24 +42,53 @@ export default function ProfileScreen() {
           <Input inputType="Goal" inputName="Carbohydrates" unit="g" charLimit={3} />
           <Input inputType="Goal" inputName="Proteins" unit="g" charLimit={3} />
         </View>
+        <TouchableOpacity onPress={handleToggleNutritionGoals}>
+          <Text style={styles.showMoreText}>Show {showNutritionGoals ? "less" : "more"} nutrition goals {showNutritionGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
+        </TouchableOpacity>
+        {showNutritionGoals && (
+          <View style={styles.categoryContainer}>
+            <Input inputType="Goal" inputName="Saturated fat" unit="g" charLimit={2} />
+            <Input inputType="Goal" inputName="Trans fat" unit="g" charLimit={3} />
+            <Input inputType="Goal" inputName="Cholesterol" unit="mg" charLimit={3} />
+            <Input inputType="Goal" inputName="Sugar" unit="g" charLimit={2} />
+            <Input inputType="Goal" inputName="Fiber" unit="g" charLimit={2} />
+            <Input inputType="Goal" inputName="Sodium" unit="mg" charLimit={4} />
+            <Input inputType="Goal" inputName="Calcium" unit="mg" charLimit={4} />
+            <Input inputType="Goal" inputName="Potassium" unit="mg" charLimit={4} />
+            <Input inputType="Goal" inputName="Iron" unit="mg" charLimit={3} />
+            <Input inputType="Goal" inputName="Vitamin C" unit="mg" charLimit={4} />
+            <Input inputType="Goal" inputName="Vitamin A" unit="mcg" charLimit={3} />
+          </View>
+        )}
 
-
-
-        <View style={styles.goalsContainer}>
-          <Text style={styles.h2}>Measurements</Text>
-          {measurementsGoals.map((goal, index) => (
-            <ProfileGoalPicker
-              key={index}
-              units={['cm', 'in', 'lbs', 'kg']}
-              value={goal.value}
-              unit={goal.unit}
-              onValueChange={(value, unit) => handleMeasurementsGoalChange(index, value, unit)}
-            />
-          ))}
-          <TouchableOpacity onPress={() => setMeasurementsGoals([...measurementsGoals, { value: '', unit: 'cm' }])}>
-            <Text style={styles.addMeasurementGoal}>Add measurement goal +</Text>
-          </TouchableOpacity>
+        <Text style={styles.h2}>Sleep</Text>
+        <View style={styles.categoryContainer}>
+          <Input inputType="Goal" inputName="Duration" unit="h" charLimit={2} />
+          <Input inputType="Goal" inputName="" unit="min" charLimit={2} />
         </View>
+
+        <Text style={styles.h2}>Measurements</Text>
+        <View style={styles.categoryContainer}>
+          <Input inputType="About Me" inputName="Weight" charLimit={5} />
+        </View>
+        <TouchableOpacity onPress={handleToggleMeasurementGoals}>
+          <Text style={styles.showMoreText}>Show {showMeasurementGoals ? "less" : "more"} measurement goals {showMeasurementGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
+        </TouchableOpacity>
+        {showMeasurementGoals && (
+          <View style={styles.categoryContainer}>
+            <Input inputType="Goal" inputName="Neck" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Upper arms" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Forearms" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Bust" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Band" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Waist" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Belly" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Butt" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Hips" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Thighs" unit="cm" charLimit={3} />
+            <Input inputType="Goal" inputName="Calves" unit="cm" charLimit={3} />
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -97,8 +97,8 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.accent1,
-    padding: 24,
-    paddingTop: 0,
+    paddingHorizontal: 24,
+    paddingBottom: 48,
     gap: 16,
   },
   h1: {
@@ -116,12 +116,18 @@ const styles = StyleSheet.create({
   p: {
     fontFamily: 'Nunito-Regular',
   },
+  arrow: {
+    fontSize: 12,
+  },
   categoryContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
     rowGap: 20,
+  },
+  categoryContainerDisplay: {
+    display: 'none',
   },
   categoryItem: {
     gap: 4,
@@ -151,7 +157,7 @@ const styles = StyleSheet.create({
   goalsContainer: {
     gap: 8,
   },
-  addMeasurementGoal: {
+  showMoreText: {
     color: Colors.primary,
   }
 });

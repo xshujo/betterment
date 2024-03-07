@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   goalFlex: {
     width: 144,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.primaryLight,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
