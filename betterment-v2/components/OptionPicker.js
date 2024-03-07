@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../constants/Colors";
 
-export default function OptionPicker({ options, onSelect, defaultUnit }) {
+export default function OptionPicker({ options, onSelect, currentUnit }) {
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedUnit, setSelectedUnit] = useState(defaultUnit);
+
+  useEffect(() => {
+    // Set the selected unit when the currentUnit prop changes
+    setSelectedUnit(currentUnit);
+  }, [currentUnit]);
+
+  const [selectedUnit, setSelectedUnit] = useState(currentUnit);
 
   function handleToggleOptions() {
     setShowOptions(!showOptions);

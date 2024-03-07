@@ -92,15 +92,15 @@ export default function SettingsScreen() {
         <View style={styles.categoryContainer}>
           <View style={styles.settingContainer}>
             <Text style={styles.settingText}>Weight unit</Text>
-            <OptionPicker options={["kg", "lbs"]} onSelect={handleWeightUnitSelect} defaultUnit={weightUnit} />
+            <OptionPicker options={["kg", "lbs"]} onSelect={handleWeightUnitSelect} currentUnit={weightUnit} />
           </View>
           <View style={styles.settingContainer}>
             <Text style={styles.settingText}>Height unit</Text>
-            <OptionPicker options={["cm", "ft"]} onSelect={handleHeightUnitSelect} defaultUnit={heightUnit} />
+            <OptionPicker options={["cm", "ft"]} onSelect={handleHeightUnitSelect} currentUnit={heightUnit} />
           </View>
           <View style={styles.settingContainer}>
             <Text style={styles.settingText}>Measurement unit</Text>
-            <OptionPicker options={["cm", "in"]} onSelect={handleMeasurementUnitSelect} defaultUnit={measurementUnit} />
+            <OptionPicker options={["cm", "in"]} onSelect={handleMeasurementUnitSelect} currentUnit={measurementUnit} />
           </View>
         </View>
       </ScrollView>
