@@ -1,8 +1,11 @@
+// This component is a screen that displays the app's settings //
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+
 import { Colors } from "../constants/Colors";
-import OptionPicker from "../components/OptionPicker";
 import { loadSettings, saveSettings } from "../utils/storage";
+
+import OptionPicker from "../components/OptionPicker";
 
 export default function SettingsScreen() {
   const [weightUnit, setWeightUnit] = useState("lbs");
@@ -10,11 +13,10 @@ export default function SettingsScreen() {
   const [measurementUnit, setMeasurementUnit] = useState("cm");
 
   useEffect(() => {
-    // Load initial settings when the component mounts
     loadInitialSettings();
   }, []);
 
-  const loadInitialSettings = async () => {
+  async function loadInitialSettings() {
     try {
       const settings = await loadSettings();
       if (settings) {
@@ -22,7 +24,6 @@ export default function SettingsScreen() {
         setHeightUnit(settings.units.find(unit => unit.type === "height").unit);
         setMeasurementUnit(settings.units.find(unit => unit.type === "measurement").unit);
       } else {
-        // If no settings are found, provide default values
         console.log('No settings found. Using default values.');
         setWeightUnit("lbs");
         setHeightUnit("cm");
@@ -33,29 +34,28 @@ export default function SettingsScreen() {
     }
   };
 
-  const handleWeightUnitSelect = async (option) => {
+  async function handleWeightUnitSelect(option) {
     console.log("Selected weight unit:", option);
     setWeightUnit(option);
     await saveSettingsToStorage("weight", option);
   };
 
-  const handleHeightUnitSelect = async (option) => {
+  async function handleHeightUnitSelect(option) {
     console.log("Selected height unit:", option);
     setHeightUnit(option);
     await saveSettingsToStorage("height", option);
   };
 
-  const handleMeasurementUnitSelect = async (option) => {
+  async function handleMeasurementUnitSelect(option) {
     console.log("Selected measurement unit:", option);
     setMeasurementUnit(option);
     await saveSettingsToStorage("measurement", option);
   };
 
-  const saveSettingsToStorage = async (type, unit) => {
+  async function saveSettingsToStorage(type, unit) {
     try {
       let settings = await loadSettings();
       if (!settings) {
-        // Initialize settings with default values
         settings = {
           units: [
             { id: 1, type: "weight", unit: "lbs" },
@@ -65,7 +65,6 @@ export default function SettingsScreen() {
         };
       }
 
-      // Update the units based on the provided type and unit
       const updatedUnits = settings.units.map(u => {
         if (u.type === type) {
           return { ...u, unit };
@@ -73,17 +72,13 @@ export default function SettingsScreen() {
         return u;
       });
 
-      // Update the settings with the updated units
       await saveSettings({ ...settings, units: updatedUnits });
 
-      // Log the updated settings to the console
       console.log("Updated settings:", { ...settings, units: updatedUnits });
     } catch (error) {
       console.error("Error saving settings:", error);
     }
   };
-
-
 
   return (
     <View style={styles.container}>

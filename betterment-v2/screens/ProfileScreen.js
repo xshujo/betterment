@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/core';
 
 import { Colors } from '../constants/Colors';
+import { loadGoals, loadSettings, saveGoals } from '../utils/storage';
 
 import Input from '../components/Input';
-import { loadGoals, loadSettings, saveGoals } from '../utils/storage';
-import { useFocusEffect } from '@react-navigation/core';
 
 export default function ProfileScreen() {
   const [showNutritionGoals, setShowNutritionGoals] = useState(false);
@@ -20,9 +20,7 @@ export default function ProfileScreen() {
   const [userGoals, setUserGoals] = useState(null);
 
   useEffect(() => {
-    // Load initial settings when the component mounts
     loadInitialSettings();
-    // Load user goals when component mounts
     loadUserGoals();
   }, []);
 
@@ -32,11 +30,10 @@ export default function ProfileScreen() {
     }, [])
   );
 
-  const loadInitialSettings = async () => {
+  async function loadInitialSettings() {
     try {
       const settings = await loadSettings();
       if (settings) {
-        // Set units from settings
         setUnits({
           weight: settings.units.find(unit => unit.type === "weight").unit,
           height: settings.units.find(unit => unit.type === "height").unit,
@@ -48,29 +45,27 @@ export default function ProfileScreen() {
     }
   };
 
-  const loadUserGoals = async () => {
+  async function loadUserGoals() {
     try {
-      const goals = await loadGoals(); // Load user goals from storage
-      setUserGoals(goals); // Update state with loaded goals
+      const goals = await loadGoals();
+      setUserGoals(goals);
     } catch (error) {
       console.error("Error loading goals:", error);
     }
   };
 
-  const saveUserGoals = async (goals) => {
+  async function saveUserGoals(goals) {
     try {
-      await saveGoals(goals); // Save user goals to storage
-      setUserGoals(goals); // Update state with saved goals
+      await saveGoals(goals);
+      setUserGoals(goals);
     } catch (error) {
       console.error("Error saving goals:", error);
     }
   };
 
-  const handleGoalChange = async (goalName, value) => {
+  async function handleGoalChange(goalName, value) {
     try {
-      // Update the user's goals with the new value
       const updatedGoals = { ...userGoals, [goalName]: value };
-      // Save the updated goals to AsyncStorage
       await saveUserGoals(updatedGoals);
     } catch (error) {
       console.error("Error handling goal change:", error);
@@ -177,12 +172,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     fontSize: 18,
   },
-  h3: {
-    fontFamily: 'Nunito-Bold'
-  },
-  p: {
-    fontFamily: 'Nunito-Regular',
-  },
   arrow: {
     fontSize: 12,
   },
@@ -193,38 +182,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     rowGap: 20,
   },
-  categoryContainerDisplay: {
-    display: 'none',
-  },
-  categoryItem: {
-    gap: 4,
-  },
-  goalFlex: {
-    width: 144,
-    backgroundColor: Colors.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-  },
-  multiInputContainer: {
-    width: 144,
-    backgroundColor: Colors.primary,
-    flexDirection: 'row',
-    zIndex: 5,
-  },
-  textInput: {
-    width: 72,
-    backgroundColor: Colors.accent1,
-    fontFamily: 'Nunito-Regular',
-    borderColor: Colors.primary,
-    borderWidth: 2,
-    paddingVertical: 8,
-    paddingLeft: 16,
-  },
-  goalsContainer: {
-    gap: 8,
-  },
   showMoreText: {
+    fontFamily: 'Nunito-Regular',
     color: Colors.primary,
   }
 });

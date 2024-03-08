@@ -1,10 +1,12 @@
+// This file handles saving and loading data with AsyncStorage //
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Key for storing settings data in AsyncStorage
 const SETTINGS_STORAGE_KEY = '@MyApp:settings';
 
 // Function to save settings data to AsyncStorage
-export const saveSettings = async (settings) => {
+export async function saveSettings(settings) {
   try {
     const jsonSettings = JSON.stringify(settings);
     await AsyncStorage.setItem(SETTINGS_STORAGE_KEY, jsonSettings);
@@ -16,7 +18,7 @@ export const saveSettings = async (settings) => {
 };
 
 // Function to load settings data from AsyncStorage
-export const loadSettings = async () => {
+export async function loadSettings() {
   try {
     const jsonSettings = await AsyncStorage.getItem(SETTINGS_STORAGE_KEY);
     if (jsonSettings !== null) {
@@ -37,7 +39,7 @@ export const loadSettings = async () => {
 const GOALS_STORAGE_KEY = '@MyApp:goals';
 
 // Function to save goals data to AsyncStorage
-export const saveGoals = async (goals) => {
+export async function saveGoals(goals) {
   try {
     await AsyncStorage.setItem(GOALS_STORAGE_KEY, JSON.stringify(goals));  // Save user goals to AsyncStorage
     console.log('Goals saved successfully.');
@@ -47,7 +49,8 @@ export const saveGoals = async (goals) => {
   }
 };
 
-export const loadGoals = async () => {
+// Function to load goals data from AsyncStorage
+export async function loadGoals() {
   try {
     const jsonGoals = await AsyncStorage.getItem(GOALS_STORAGE_KEY);
     if (jsonGoals !== null) {
