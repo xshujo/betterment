@@ -104,26 +104,32 @@ export default function LogScreen() {
           </View>
         )}
 
-        {filteredEntries.map((categoryData) => {
-          const { category, entries } = categoryData;
+        {filteredEntries.length === 0 ? ( // Check if there are no entries
+          <View style={styles.noEntriesContainer}>
+            <Text style={styles.noEntriesText}>No entries recorded</Text>
+          </View>
+        ) : (
+          filteredEntries.map((categoryData) => {
+            const { category, entries } = categoryData;
 
-          return (
-            <LinearGradient colors={['#FED3D4', '#EEFFF3']}
-              start={[0, 1]}
-              end={[1, 0]}
-              style={{ borderRadius: 16 }}
-              key={category}>
-              <View style={styles.logContainer}>
-                <Text style={styles.categoryText}>{category}</Text>
-                {category === 'activity' && (<Text style={styles.countText}>Exercise count: {exerciseCount}</Text>)}
-                {category === 'nutrition' && (<Text style={styles.countText}>Meal count: {mealCount}</Text>)}
-                {entries.map((entry) => (
-                  <LogEntry key={entry.eid} category={category} entry={entry} />
-                ))}
-              </View>
-            </LinearGradient>
-          );
-        })}
+            return (
+              <LinearGradient colors={['#FED3D4', '#EEFFF3']}
+                start={[0, 1]}
+                end={[1, 0]}
+                style={{ borderRadius: 16 }}
+                key={category}>
+                <View style={styles.logContainer}>
+                  <Text style={styles.categoryText}>{category}</Text>
+                  {category === 'activity' && (<Text style={styles.countText}>Exercise count: {exerciseCount}</Text>)}
+                  {category === 'nutrition' && (<Text style={styles.countText}>Meal count: {mealCount}</Text>)}
+                  {entries.map((entry) => (
+                    <LogEntry key={entry.eid} category={category} entry={entry} />
+                  ))}
+                </View>
+              </LinearGradient>
+            );
+          })
+        )}
       </ScrollView>
     </View>
   );
@@ -174,5 +180,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Light',
     fontSize: 14,
     marginBottom: 8,
+  },
+  noEntriesContainer: {
+    height: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noEntriesText: {
+    fontFamily: 'Nunito-Bold',
+    fontSize: 24,
+    color: Colors.accent2,
+    textAlign: 'center',
   },
 });
