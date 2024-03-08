@@ -30,7 +30,7 @@ export default function Footer() {
       </TouchableOpacity>
 
       {/* Add entry button */}
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer} onPress={() => navigateToScreen('Add')}>
         <AddIcon />
       </TouchableOpacity>
 
