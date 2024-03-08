@@ -42,7 +42,7 @@ export default function LogEntry({ category, entry }) {
       {category === 'activity' && (
         <View style={styles.entryContainer}>
           <Text style={styles.activityNameText}>{entry.activityName}</Text>
-          <Text>{entry.activityDuration} min</Text>
+          <Text style={styles.p}>{entry.activityDuration} min</Text>
         </View>
       )}
 
@@ -54,8 +54,8 @@ export default function LogEntry({ category, entry }) {
             <>
               <Text style={styles.boldText}>{entry.mealType}</Text>
               <View style={styles.entryContainer}>
-                <Text>{entry.foodItemName}</Text>
-                <Text>{entry.foodItemCalories} cal</Text>
+                <Text style={styles.p}>{entry.foodItemName}</Text>
+                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
               </View>
             </>
           )}
@@ -63,8 +63,8 @@ export default function LogEntry({ category, entry }) {
             <>
               <Text style={styles.boldText}>{entry.mealType}</Text>
               <View style={styles.entryContainer}>
-                <Text>{entry.foodItemName}</Text>
-                <Text>{entry.foodItemCalories} cal</Text>
+                <Text style={styles.p}>{entry.foodItemName}</Text>
+                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
               </View>
             </>
           )}
@@ -72,8 +72,8 @@ export default function LogEntry({ category, entry }) {
             <>
               <Text style={styles.boldText}>{entry.mealType}</Text>
               <View style={styles.entryContainer}>
-                <Text>{entry.foodItemName}</Text>
-                <Text>{entry.foodItemCalories} cal</Text>
+                <Text style={styles.p}>{entry.foodItemName}</Text>
+                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
               </View>
             </>
           )}
@@ -81,8 +81,8 @@ export default function LogEntry({ category, entry }) {
             <>
               <Text style={styles.boldText}>{entry.mealType}</Text>
               <View style={styles.entryContainer}>
-                <Text>{entry.foodItemName}</Text>
-                <Text>{entry.foodItemCalories} cal</Text>
+                <Text style={styles.p}>{entry.foodItemName}</Text>
+                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
               </View>
             </>
           )}
@@ -92,9 +92,9 @@ export default function LogEntry({ category, entry }) {
       {/* Structure for Sleep entries */}
       {category === 'sleep' && (
         <View style={styles.sleepContainer}>
-          <View style={styles.entryContainer}><Text style={styles.boldText}>Slept at</Text><Text>{formattedSleepTime}</Text></View>
-          <View style={styles.entryContainer}><Text style={styles.boldText}>Woke at</Text><Text>{formattedWakeTime}</Text></View>
-          <Text><Text>Sleep duration: </Text>{formattedDuration}</Text>
+          <View style={styles.entryContainer}><Text style={styles.boldText}>Slept at</Text><Text style={styles.p}>{formattedSleepTime}</Text></View>
+          <View style={styles.entryContainer}><Text style={styles.boldText}>Woke at</Text><Text style={styles.p}>{formattedWakeTime}</Text></View>
+          <Text style={styles.p}><Text>Sleep duration: </Text>{formattedDuration}</Text>
         </View>
       )}
 
@@ -102,7 +102,8 @@ export default function LogEntry({ category, entry }) {
       {category === 'measurements' && (
         <View>
           <View style={styles.entryContainer}>
-            <Text style={styles.boldText}>{entry.measurementName}</Text><Text>{entry.measurementValue} {entry.measurementUnit}</Text>
+            <Text style={styles.boldText}>{entry.measurementName}</Text>
+            <Text style={styles.p}>{entry.measurementValue} {entry.measurementUnit}</Text>
           </View>
         </View>
       )}
@@ -111,16 +112,19 @@ export default function LogEntry({ category, entry }) {
 }
 
 const styles = StyleSheet.create({
+  p: {
+    fontFamily: 'Nunito-Regular',
+  },
   entryContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   boldText: {
-    fontWeight: 'bold'
+    fontFamily: 'Nunito-Bold',
   },
   activityNameText: {
     maxWidth: 175,
-    fontWeight: 'bold',
+    fontFamily: 'Nunito-Bold',
   },
   sleepContainer: {
     gap: 4,
