@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../constants/Colors";
 
-export default function Input({ inputName, unit, charLimit }) {
+export default function Input({ inputName, unit, charLimit, type, onChange, value }) {
+
+  const handleInputChange = async (text) => {
+    console.log("Input value:", text);
+    onChange(text);
+  };
+
   return (
     <View style={styles.categoryItem}>
       <Text style={styles.h3}>{inputName}</Text>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} keyboardType='numeric' placeholder='Value' maxLength={charLimit} />
+        <TextInput
+          style={styles.textInput}
+          keyboardType='numeric'
+          placeholder='Value'
+          maxLength={charLimit}
+          value={value}
+          onChangeText={handleInputChange}
+        />
         <View>
           <Text style={styles.h3}>{unit}</Text>
         </View>
