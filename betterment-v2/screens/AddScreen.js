@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import ActivityEntryForm from "../components/forms/ActivityEntryForm";
 import OptionPicker from "../components/OptionPicker";
 import MealEntryForm from "../components/forms/MealEntryForm";
+import SleepEntryForm from "../components/forms/SleepEntryForm";
 
 export default function AddScreen() {
   return (
@@ -10,7 +11,8 @@ export default function AddScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         {/* <OptionPicker /> */}
         {/* <ActivityEntryForm /> */}
-        <MealEntryForm />
+        {/* <MealEntryForm /> */}
+        <SleepEntryForm />
       </ScrollView>
     </View>
   );
