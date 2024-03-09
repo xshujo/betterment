@@ -109,17 +109,17 @@ export default function ProfileScreen() {
         </TouchableOpacity>
         {showNutritionGoals && (
           <View style={styles.categoryContainer}>
-            <Input inputName="Saturated fat" unit="g" charLimit={2} value={userGoals?.saturatedFat} onChange={(value) => handleGoalChange('saturatedFat', value)} />
+            <Input inputName="Saturated fat" unit="g" charLimit={3} value={userGoals?.saturatedFat} onChange={(value) => handleGoalChange('saturatedFat', value)} />
             <Input inputName="Trans fat" unit="g" charLimit={3} value={userGoals?.transFat} onChange={(value) => handleGoalChange('transFat', value)} />
             <Input inputName="Cholesterol" unit="mg" charLimit={3} value={userGoals?.cholesterol} onChange={(value) => handleGoalChange('cholesterol', value)} />
             <Input inputName="Sugar" unit="g" charLimit={2} value={userGoals?.sugar} onChange={(value) => handleGoalChange('sugar', value)} />
             <Input inputName="Fiber" unit="g" charLimit={2} value={userGoals?.fiber} onChange={(value) => handleGoalChange('fiber', value)} />
             <Input inputName="Sodium" unit="mg" charLimit={4} value={userGoals?.sodium} onChange={(value) => handleGoalChange('sodium', value)} />
             <Input inputName="Calcium" unit="mg" charLimit={4} value={userGoals?.calcium} onChange={(value) => handleGoalChange('calcium', value)} />
-            <Input inputName="Potassium" unit="mg" charLimit={4} value={userGoals?.potassium} onChange={(value) => handleGoalChange('potassium', value)} />
-            <Input inputName="Iron" unit="mg" charLimit={3} value={userGoals?.iron} onChange={(value) => handleGoalChange('iron', value)} />
-            <Input inputName="Vitamin C" unit="mg" charLimit={4} value={userGoals?.vitaminC} onChange={(value) => handleGoalChange('vitaminC', value)} />
             <Input inputName="Vitamin A" unit="mcg" charLimit={3} value={userGoals?.vitaminA} onChange={(value) => handleGoalChange('vitaminA', value)} />
+            <Input inputName="Vitamin C" unit="mg" charLimit={4} value={userGoals?.vitaminC} onChange={(value) => handleGoalChange('vitaminC', value)} />
+            <Input inputName="Iron" unit="mg" charLimit={3} value={userGoals?.iron} onChange={(value) => handleGoalChange('iron', value)} />
+            <Input inputName="Potassium" unit="mg" charLimit={4} value={userGoals?.potassium} onChange={(value) => handleGoalChange('potassium', value)} />
           </View>
         )}
 

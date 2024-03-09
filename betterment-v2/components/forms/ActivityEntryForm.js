@@ -3,7 +3,6 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import { Calendar } from 'react-native-calendars';
 
 import { Colors } from "../../constants/Colors";
-import Input from "../Input";
 
 export default function ActivityEntryForm() {
   const [showCalendar, setShowCalendar] = useState(false);
