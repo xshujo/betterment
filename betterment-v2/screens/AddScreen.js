@@ -4,6 +4,7 @@ import ActivityEntryForm from "../components/forms/ActivityEntryForm";
 import OptionPicker from "../components/OptionPicker";
 import MealEntryForm from "../components/forms/MealEntryForm";
 import SleepEntryForm from "../components/forms/SleepEntryForm";
+import MeasurementEntryForm from "../components/forms/MeasurementEntryForm";
 
 export default function AddScreen() {
   return (
@@ -12,7 +13,8 @@ export default function AddScreen() {
         {/* <OptionPicker /> */}
         {/* <ActivityEntryForm /> */}
         {/* <MealEntryForm /> */}
-        <SleepEntryForm />
+        {/* <SleepEntryForm /> */}
+        <MeasurementEntryForm />
       </ScrollView>
     </View>
   );
