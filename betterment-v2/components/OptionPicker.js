@@ -25,7 +25,7 @@ export default function OptionPicker({ options, onSelect, currentUnit }) {
   return (
     <>
       <TouchableOpacity style={styles.inputContainer} onPress={handleToggleOptions}>
-        <Text style={styles.inputText}>{selectedUnit} {showOptions ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
+        <Text style={styles.inputText}>{selectedUnit} {showOptions ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}</Text>
       </TouchableOpacity>
       {showOptions && (
         <View style={styles.optionsContainer}>

@@ -54,7 +54,7 @@ export default function Header() {
       {renderGoBackButton()}
 
       {/* Screen name */}
-      <Text style={styles.screenNameText}>{currentScreen}</Text>
+      {currentScreen === "Add" ? <Text style={styles.screenNameText}>New entry</Text> : <Text style={styles.screenNameText}>{currentScreen}</Text>}
 
       {/* Settings button */}
       {renderSettingsButton()}

@@ -105,7 +105,7 @@ export default function ProfileScreen() {
           <Input inputName="Proteins" unit="g" charLimit={3} value={userGoals?.proteins} onChange={(value) => handleGoalChange('proteins', value)} />
         </View>
         <TouchableOpacity onPress={handleToggleNutritionGoals}>
-          <Text style={styles.showMoreText}>Show {showNutritionGoals ? "less" : "more"} nutrition goals {showNutritionGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
+          <Text style={styles.showMoreText}>Show {showNutritionGoals ? "less" : "more"} nutrition goals {showNutritionGoals ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}</Text>
         </TouchableOpacity>
         {showNutritionGoals && (
           <View style={styles.categoryContainer}>
@@ -134,7 +134,7 @@ export default function ProfileScreen() {
           <Input inputType="Goal" inputName="Weight" unit={units.weight} charLimit={5} value={userGoals?.targetWeight} onChange={(value) => handleGoalChange('targetWeight', value)} />
         </View>
         <TouchableOpacity onPress={handleToggleMeasurementGoals}>
-          <Text style={styles.showMoreText}>Show {showMeasurementGoals ? "less" : "more"} measurement goals {showMeasurementGoals ? <Text style={styles.arrow}>&#x25B2;</Text> : <Text style={styles.arrow}>&#x25BC;</Text>}</Text>
+          <Text style={styles.showMoreText}>Show {showMeasurementGoals ? "less" : "more"} measurement goals {showMeasurementGoals ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}</Text>
         </TouchableOpacity>
         {showMeasurementGoals && (
           <View style={styles.categoryContainer}>
