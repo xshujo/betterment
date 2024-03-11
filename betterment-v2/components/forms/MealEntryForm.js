@@ -13,12 +13,6 @@ export default function MealEntryForm() {
 
   return (
     <>
-      <View style={styles.titleContainer}>
-        <Text style={styles.h1}>Add a meal</Text>
-        <TouchableOpacity>
-          <Text style={styles.saveText}>Save</Text>
-        </TouchableOpacity>
-      </View>
       <View style={styles.fieldContainer}>
         <Text style={styles.h3}>Name</Text>
         <View style={styles.inputContainer}>
@@ -160,20 +154,6 @@ const styles = StyleSheet.create({
   },
   p: {
     fontFamily: 'Nunito-Regular',
-    paddingVertical: 8,
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  saveText: {
-    backgroundColor: Colors.secondary,
-    fontFamily: 'Nunito-Bold',
-    fontSize: 20,
-    color: Colors.accent1,
-    borderRadius: 48,
-    paddingHorizontal: 16,
     paddingVertical: 8,
   },
   nutritionInfoContainer: {
