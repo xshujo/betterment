@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
   },
   p: {
-    fontFamily: 'Nunito-Regular',
+    fontFamily: 'Nunito-Bold',
     paddingVertical: 8,
   },
   nutritionInfoContainer: {

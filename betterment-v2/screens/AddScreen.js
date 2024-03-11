@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { Colors } from "../constants/Colors";
 import ActivityEntryForm from "../components/forms/ActivityEntryForm";
-import OptionPicker from "../components/OptionPicker";
 import MealEntryForm from "../components/forms/MealEntryForm";
 import SleepEntryForm from "../components/forms/SleepEntryForm";
 import MeasurementEntryForm from "../components/forms/MeasurementEntryForm";
-import { Colors } from "../constants/Colors";
 
 export default function AddScreen() {
   const [currentForm, setCurrentForm] = useState("an activity");
@@ -25,7 +25,7 @@ export default function AddScreen() {
       <View style={styles.formHandlerContainer}>
         <View style={styles.optionPicker}>
           <TouchableOpacity style={styles.pickerTitleContainer} onPress={handleToggleOptions}>
-            <Text style={styles.pickerTitleText}>Add {currentForm} {showOptions ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}</Text>
+            <Text style={styles.pickerTitleText}>Add {currentForm}</Text>{showOptions ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
           </TouchableOpacity>
           {showOptions && (
             <View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   formHandlerContainer: {
-    padding: 16,
+    padding: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
@@ -95,6 +95,9 @@ const styles = StyleSheet.create({
   pickerTitleContainer: {
     paddingHorizontal: 16,
     paddingVertical: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   pickerTitleText: {
     fontFamily: 'Nunito-Bold',
