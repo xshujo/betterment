@@ -26,7 +26,7 @@ export default function MeasurementEntryForm() {
       <View style={styles.fieldContainer}>
         <Text style={styles.h3}>Measure</Text>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+          <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
           <Text style={styles.p}> cm</Text>{/* based on settings */}
         </View>
       </View>

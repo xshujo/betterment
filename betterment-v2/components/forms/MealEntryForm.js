@@ -37,105 +37,105 @@ export default function MealEntryForm() {
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Calories</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={4} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={4} />
             <Text style={styles.p}> cal</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Fats</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={2} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={2} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Saturated fats</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Trans fats</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Cholesterol</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Carbohydrates</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Sugar</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={2} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={2} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Fiber</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={2} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={2} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Proteins</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Sodium</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={4} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={4} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Calcium</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={4} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={4} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Vitamin A</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> mcg</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Vitamin C</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={4} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={4} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Iron</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
         <View style={[styles.fieldContainer, styles.nutritionInfoItem]}>
           <Text style={styles.h3}>Potassium</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.textInput} placeholder="Value" keyboardType="numeric" maxLength={4} />
+            <TextInput style={styles.textInput} placeholder="Value" inputMode="numeric" maxLength={4} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>

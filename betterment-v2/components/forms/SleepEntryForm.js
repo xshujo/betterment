@@ -24,11 +24,11 @@ export default function SleepEntryForm() {
         <Text style={styles.h3}>Sleep hour</Text>
         <View style={styles.subFieldContainer}>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="Hours" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Hours" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}>h</Text>
           </View>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="Minutes" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Minutes" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}>min</Text>
           </View>
         </View>
@@ -45,11 +45,11 @@ export default function SleepEntryForm() {
         <Text style={styles.h3}>Wake hour</Text>
         <View style={styles.subFieldContainer}>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="Hours" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Hours" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}>h</Text>
           </View>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="Minutes" keyboardType="numeric" maxLength={3} />
+            <TextInput style={styles.textInput} placeholder="Minutes" inputMode="numeric" maxLength={3} />
             <Text style={styles.p}>min</Text>
           </View>
         </View>
