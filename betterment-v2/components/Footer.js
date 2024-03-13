@@ -5,15 +5,15 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { useCurrentScreen } from "../hooks/useCurrentScreen";
 import { Colors } from "../constants/Colors";
 import { AddIcon, DiaryIcon, HomeIcon, LogIcon, ProfileIcon } from "./SvgIcon";
-import { useCurrentScreen } from "../hooks/useCurrentScreen";
 
 export default function Footer() {
   const navigation = useNavigation();
   const currentScreen = useCurrentScreen();
 
-  const navigateToScreen = (screenName) => {
+  function navigateToScreen(screenName) {
     navigation.navigate(screenName);
   };
 
@@ -48,7 +48,6 @@ export default function Footer() {
 }
 
 const styles = StyleSheet.create({
-  // Styles for the container (footer)
   container: {
     minHeight: 100,
     backgroundColor: Colors.accent1,
@@ -56,8 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  // Styles for the icons' container
   iconContainer: {
-    padding: 24, // Add space
+    padding: 24,
   }
 });

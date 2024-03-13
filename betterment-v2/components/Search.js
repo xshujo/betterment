@@ -2,9 +2,10 @@
 
 import React from "react";
 import { Image, StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+
+import { Colors } from "../constants/Colors";
 import SearchIcon from "../assets/images/icon.png";
 import SortIcon from "../assets/images/icon.png";
-import { Colors } from "../constants/Colors";
 
 export default function Search() {
   return (

@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
-import LogScreen from '../screens/LogScreen';
-import AddScreen from '../screens/AddScreen';
 import DiaryScreen from '../screens/DiaryScreen';
+import AddScreen from '../screens/AddScreen';
+import LogScreen from '../screens/LogScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import Header from '../components/Header';

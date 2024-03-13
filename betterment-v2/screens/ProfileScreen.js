@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/core';
 
-import { Colors } from '../constants/Colors';
 import { loadGoals, loadSettings, saveGoals } from '../utils/storage';
-
+import { Colors } from '../constants/Colors';
 import Input from '../components/Input';
 
 export default function ProfileScreen() {

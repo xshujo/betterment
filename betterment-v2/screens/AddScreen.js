@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { Colors } from "../constants/Colors";
 import { saveFormData } from "../utils/storage";
-
+import { Colors } from "../constants/Colors";
 import ActivityEntryForm from "../components/forms/ActivityEntryForm";
 import MealEntryForm from "../components/forms/MealEntryForm";
 import SleepEntryForm from "../components/forms/SleepEntryForm";

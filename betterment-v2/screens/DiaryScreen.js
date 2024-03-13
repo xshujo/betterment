@@ -2,9 +2,10 @@
 
 import React from "react";
 import { StyleSheet, View } from "react-native";
+
+import { Colors } from "../constants/Colors";
 import Search from "../components/Search";
 import DiaryEntryList from "../components/DiaryEntryList";
-import { Colors } from "../constants/Colors";
 
 export default function DiaryScreen() {
   return (

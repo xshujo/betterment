@@ -1,5 +1,6 @@
 import React from "react";
 import { Circle, G, Path, Svg } from "react-native-svg";
+
 import { Colors } from "../constants/Colors";
 
 export function GoBackIcon() {

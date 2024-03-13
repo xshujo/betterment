@@ -1,12 +1,13 @@
 // This component is a screen that displays the user's health entries //
 
 import React, { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/core";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Calendar } from 'react-native-calendars'; // Import calendar picker
 
+import { fetchLogData } from "../utils/logUtils";
 import { Colors } from "../constants/Colors";
-import { loadFormData } from "../utils/storage";
 import LogEntry from "../components/LogEntry";
 
 export default function LogScreen() {
@@ -14,27 +15,26 @@ export default function LogScreen() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Default to today's date
 
-  useEffect(() => {
-    const fetchLogData = async () => {
-      try {
-        // Fetch log data from AsyncStorage
-        const formData = await loadFormData();
-        // Set the fetched log data to the state
-        setLogData(formData);
-      } catch (error) {
-        console.error('Error fetching log data:', error);
-      }
-    };
-
-    fetchLogData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async () => {
+        try {
+          const data = await fetchLogData();
+          setLogData(data);
+        } catch (error) {
+          console.error('Error fetching log data:', error);
+        }
+      };
+      fetchData();
+    }, [])
+  );
 
   function toggleShowCalendar() {
     setShowCalendar(!showCalendar);
   }
 
   // Function to handle day press event
-  const handleDayPress = (day) => {
+  function handleDayPress(day) {
     setSelectedDate(day.dateString);
     setShowCalendar(false);
   };

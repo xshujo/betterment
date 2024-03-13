@@ -2,9 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import { Colors } from "../constants/Colors";
 import { loadSettings, saveSettings } from "../utils/storage";
-
+import { Colors } from "../constants/Colors";
 import OptionPicker from "../components/OptionPicker";
 
 export default function SettingsScreen() {
