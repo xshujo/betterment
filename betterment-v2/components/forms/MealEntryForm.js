@@ -38,7 +38,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
       <View style={styles.fieldContainer}>
         <Text style={styles.h3}>Date</Text>
         <TouchableOpacity style={styles.inputContainer} onPress={toggleShowCalendar}>
-          <Text style={styles.p}>{formData.dateCreated ? formData.dateCreated : new Date().toISOString().split('T')[0]}</Text>{showCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
+          <Text style={styles.p}>{formData.dateCreated}</Text>{showCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
         </TouchableOpacity>
         {showCalendar && (
           <View>

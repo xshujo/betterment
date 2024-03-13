@@ -97,10 +97,10 @@ export default function AddScreen() {
         yesterday.setDate(yesterday.getDate() - 1); // Set yesterday's date
         const yesterdayFormatted = yesterday.toISOString().split('T')[0];
         return {
-          sleepDate: today,
+          sleepDate: yesterdayFormatted,
           sleepHours: "",
           sleepMinutes: "",
-          wakeDate: yesterdayFormatted,
+          wakeDate: today,
           wakeHours: "",
           wakeMinutes: ""
         };
@@ -152,10 +152,10 @@ export default function AddScreen() {
           <MealEntryForm formData={formData} onFormChange={handleFormChange} formType={currentForm} />
         )}
         {currentForm[1] === "sleep" && (
-          <SleepEntryForm />
+          <SleepEntryForm formData={formData} onFormChange={handleFormChange} formType={currentForm} />
         )}
         {currentForm[1] === "measurement" && (
-          <MeasurementEntryForm />
+          <MeasurementEntryForm formData={formData} onFormChange={handleFormChange} formType={currentForm} />
         )}
       </ScrollView>
     </View>

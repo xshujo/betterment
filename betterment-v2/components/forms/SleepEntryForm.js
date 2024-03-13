@@ -4,52 +4,115 @@ import { Calendar } from 'react-native-calendars';
 
 import { Colors } from "../../constants/Colors";
 
-export default function SleepEntryForm() {
-  const [showCalendar, setShowCalendar] = useState(false);
+export default function SleepEntryForm({ formData, onFormChange }) {
+  const [showSleepCalendar, setShowSleepCalendar] = useState(false);
+  const [showWakeCalendar, setShowWakeCalendar] = useState(false);
 
-  function toggleShowCalendar() {
-    setShowCalendar(!showCalendar);
+  function toggleShowSleepCalendar() {
+    setShowSleepCalendar(!showSleepCalendar);
+  }
+
+  function toggleShowWakeCalendar() {
+    setShowWakeCalendar(!showWakeCalendar);
+  }
+
+  function handleHoursChange(field, value) {
+    let fieldValueInt = parseInt(value);
+    if (value === "" || (!isNaN(fieldValueInt) && fieldValueInt <= 23)) {
+      onFormChange(field, value);
+    } else {
+      onFormChange(field, "23"); // Automatically set to max value if exceeded
+    }
+  }
+
+  function handleMinutesChange(field, value) {
+    let fieldValueInt = parseInt(value);
+    if (value === "" || (!isNaN(fieldValueInt) && fieldValueInt <= 59)) {
+      onFormChange(field, value);
+    } else {
+      onFormChange(field, "59"); // Automatically set to max value if exceeded
+    }
   }
 
   return (
     <>
       <View style={styles.fieldContainer}>
-        <Text style={styles.h3}>Sleep date</Text>
-        <TouchableOpacity style={styles.dateInputContainer} onPress={toggleShowCalendar}>
-          <Text style={styles.p}>Mar 9th, 2024</Text>{showCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
+        <Text style={styles.h3}>Sleep date *</Text>
+        <TouchableOpacity style={styles.dateInputContainer} onPress={toggleShowSleepCalendar}>
+          <Text style={styles.p}>{formData.sleepDate}</Text>{showSleepCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
         </TouchableOpacity>
-        {showCalendar && (<View><Calendar /></View>)}
+        {showSleepCalendar && (
+          <View>
+            <Calendar onDayPress={(day) => {
+              onFormChange("dateCreated", day.dateString);
+              toggleShowSleepCalendar();
+            }}
+              markedDates={{ [formData.sleepDate]: { selected: true } }} />
+          </View>
+        )}
       </View>
       <View style={styles.fieldContainer}>
-        <Text style={styles.h3}>Sleep hour</Text>
+        <Text style={styles.h3}>Sleep hour *</Text>
         <View style={styles.subFieldContainer}>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="Ex: 21" inputMode="numeric" maxLength={3} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Ex: 21"
+              inputMode="numeric"
+              maxLength={2}
+              value={formData.sleepHours}
+              onChangeText={(value) => handleHoursChange("sleepHours", value)} />
             <Text style={styles.p}>h</Text>
           </View>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="30" inputMode="numeric" maxLength={3} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="30"
+              inputMode="numeric"
+              maxLength={2}
+              value={formData.sleepMinutes}
+              onChangeText={(value) => handleMinutesChange("sleepMinutes", value)} />
             <Text style={styles.p}>min</Text>
           </View>
         </View>
       </View>
 
       <View style={styles.fieldContainer}>
-        <Text style={styles.h3}>Wake date</Text>
-        <TouchableOpacity style={styles.dateInputContainer} onPress={toggleShowCalendar}>
-          <Text style={styles.p}>Mar 10th, 2024</Text>{showCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
+        <Text style={styles.h3}>Wake date *</Text>
+        <TouchableOpacity style={styles.dateInputContainer} onPress={toggleShowWakeCalendar}>
+          <Text style={styles.p}>{formData.wakeDate}</Text>{showWakeCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
         </TouchableOpacity>
-        {showCalendar && (<View><Calendar /></View>)}
+        {showWakeCalendar && (
+          <View>
+            <Calendar onDayPress={(day) => {
+              onFormChange("dateCreated", day.dateString);
+              toggleShowWakeCalendar();
+            }}
+              markedDates={{ [formData.wakeDate]: { selected: true } }} />
+          </View>
+        )}
       </View>
       <View style={styles.fieldContainer}>
-        <Text style={styles.h3}>Wake hour</Text>
+        <Text style={styles.h3}>Wake hour *</Text>
         <View style={styles.subFieldContainer}>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="Ex: 6" inputMode="numeric" maxLength={3} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Ex: 6"
+              inputMode="numeric"
+              maxLength={2}
+              value={formData.wakeHours}
+              onChangeText={(value) => handleHoursChange("wakeHours", value)} />
             <Text style={styles.p}>h</Text>
           </View>
           <View style={styles.textInputContainer}>
-            <TextInput style={styles.textInput} placeholder="45" inputMode="numeric" maxLength={3} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="45"
+              inputMode="numeric"
+              maxLength={2}
+              value={formData.wakeMinutes}
+              onChangeText={(value) => handleMinutesChange("wakeMinutes", value)} />
             <Text style={styles.p}>min</Text>
           </View>
         </View>
