@@ -11,7 +11,7 @@ import MeasurementEntryForm from "../components/forms/MeasurementEntryForm";
 export default function AddScreen() {
   const [currentForm, setCurrentForm] = useState(["Add an activity", "activity"]);
   const [showOptions, setShowOptions] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(getInitialFormData("activity"));
 
   function handleToggleOptions() {
     setShowOptions(!showOptions);
@@ -20,16 +20,32 @@ export default function AddScreen() {
   function changeCurrentForm(form) {
     setCurrentForm(form);
     setShowOptions(false);
+    setFormData(getInitialFormData(form[1]));
   }
 
   function handleFormChange(field, value) {
     setFormData({ ...formData, [field]: value });
-  };
+  }
+
+  function validateForm(formData, formType) {
+    switch (formType) {
+      case "activity":
+        return formData.name && formData.duration;
+      case "meal":
+        return formData.name && formData.mealType && formData.calories;
+      case "sleep":
+        return formData.sleepHours && formData.sleepMinutes && formData.wakeHours && formData.wakeMinutes;
+      case "measurement":
+        return formData.measurementName && formData.measurementValue;
+      default:
+        return false;
+    }
+  }
 
   async function handleSave() {
     // Validate form data
-    if (!formData.name || !formData.duration) {
-      alert("Name and Duration are required fields.");
+    if (!validateForm(formData, currentForm[1])) {
+      alert("Some required fields are missing.");
       return;
     }
 
@@ -40,8 +56,64 @@ export default function AddScreen() {
     await saveFormData({ id, ...formData, formType: currentForm });
 
     // Clear the form after saving
-    setFormData({});
-  };
+    setFormData(getInitialFormData(currentForm[1]));
+  }
+
+  function getInitialFormData(formType) {
+    switch (formType) {
+      case "activity":
+        return {
+          name: "",
+          dateCreated: new Date().toISOString().split('T')[0],
+          duration: "",
+          steps: "",
+          energyExpanded: "",
+          METs: ""
+        };
+      case "meal":
+        return {
+          name: "",
+          dateCreated: new Date().toISOString().split('T')[0],
+          mealType: "",
+          calories: "",
+          fats: "",
+          saturatedFats: "",
+          transFats: "",
+          cholesterol: "",
+          carbohydrates: "",
+          sugar: "",
+          fiber: "",
+          proteins: "",
+          sodium: "",
+          calcium: "",
+          vitaminA: "",
+          vitaminC: "",
+          iron: "",
+          potassium: ""
+        };
+      case "sleep":
+        const today = new Date().toISOString().split('T')[0];
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1); // Set yesterday's date
+        const yesterdayFormatted = yesterday.toISOString().split('T')[0];
+        return {
+          sleepDate: today,
+          sleepHours: "",
+          sleepMinutes: "",
+          wakeDate: yesterdayFormatted,
+          wakeHours: "",
+          wakeMinutes: ""
+        };
+      case "measurement":
+        return {
+          dateCreated: new Date().toISOString().split('T')[0],
+          measurementName: "",
+          measurementValue: "",
+        };
+      default:
+        return {};
+    }
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -77,7 +149,7 @@ export default function AddScreen() {
           <ActivityEntryForm formData={formData} onFormChange={handleFormChange} formType={currentForm} />
         )}
         {currentForm[1] === "meal" && (
-          <MealEntryForm />
+          <MealEntryForm formData={formData} onFormChange={handleFormChange} formType={currentForm} />
         )}
         {currentForm[1] === "sleep" && (
           <SleepEntryForm />
@@ -127,7 +199,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     fontSize: 16,
   },
-  pickerOptionsContainer: {},
   pickerOptionContainer: {
     paddingHorizontal: 16,
     paddingVertical: 8,
