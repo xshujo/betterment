@@ -55,6 +55,23 @@ export default function MeasurementEntryForm({ formData, onFormChange }) {
     onFormChange("measurementName", chosenMeasurement[0])
   }
 
+  function handleNumericChange(field, value) {
+    // Remove leading zeros, except for the case when it's the only digit
+    if (value.length > 1 && value[0] === "0" && value[1] !== ".") {
+      value = value.slice(1);
+    }
+
+    // Remove non-numeric characters except decimal point
+    value = value.replace(/[^0-9.]/g, '');
+
+    // Check if the value is a valid number
+    if (!isNaN(value) && parseFloat(value) >= 0) {
+      onFormChange(field, value);
+    } else {
+      onFormChange(field, "");
+    }
+  }
+
   return (
     <>
       <View style={styles.fieldContainer}>
@@ -130,7 +147,7 @@ export default function MeasurementEntryForm({ formData, onFormChange }) {
             inputMode="numeric"
             maxLength={3}
             value={formData.measurementValue}
-            onChangeText={(value) => onFormChange("measurementValue", value)} />
+            onChangeText={(value) => handleNumericChange("measurementValue", value)} />
           <Text style={styles.p}>{selectedMeasurement[0] === "weight" ? units.weight : units.measurement}</Text>
         </View>
       </View>

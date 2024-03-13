@@ -23,6 +23,23 @@ export default function MealEntryForm({ formData, onFormChange }) {
     onFormChange("mealType", chosenMealType[0])
   }
 
+  function handleNumericChange(field, value) {
+    // Remove leading zeros, except for the case when it's the only digit
+    if (value.length > 1 && value[0] === "0" && value[1] !== ".") {
+      value = value.slice(1);
+    }
+
+    // Remove non-numeric characters except decimal point
+    value = value.replace(/[^0-9.]/g, '');
+
+    // Check if the value is a valid number
+    if (!isNaN(value) && parseFloat(value) >= 0) {
+      onFormChange(field, value);
+    } else {
+      onFormChange(field, "");
+    }
+  }
+
   return (
     <>
       <View style={styles.fieldContainer}>
@@ -89,7 +106,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={4}
               value={formData.calories}
-              onChangeText={(value) => onFormChange("calories", value)} />
+              onChangeText={(value) => handleNumericChange("calories", value)} />
             <Text style={styles.p}> cal</Text>
           </View>
         </View>
@@ -102,7 +119,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={2}
               value={formData.fats}
-              onChangeText={(value) => onFormChange("fats", value)} />
+              onChangeText={(value) => handleNumericChange("fats", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -115,7 +132,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.saturatedFats}
-              onChangeText={(value) => onFormChange("saturatedFats", value)} />
+              onChangeText={(value) => handleNumericChange("saturatedFats", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -128,7 +145,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.transFats}
-              onChangeText={(value) => onFormChange("transFats", value)} />
+              onChangeText={(value) => handleNumericChange("transFats", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -141,7 +158,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.cholesterol}
-              onChangeText={(value) => onFormChange("cholesterol", value)} />
+              onChangeText={(value) => handleNumericChange("cholesterol", value)} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
@@ -154,7 +171,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.carbohydrates}
-              onChangeText={(value) => onFormChange("carbohydrates", value)} />
+              onChangeText={(value) => handleNumericChange("carbohydrates", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -167,7 +184,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={2}
               value={formData.sugar}
-              onChangeText={(value) => onFormChange("sugar", value)} />
+              onChangeText={(value) => handleNumericChange("sugar", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -180,7 +197,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={2}
               value={formData.fiber}
-              onChangeText={(value) => onFormChange("fiber", value)} />
+              onChangeText={(value) => handleNumericChange("fiber", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -193,7 +210,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.proteins}
-              onChangeText={(value) => onFormChange("proteins", value)} />
+              onChangeText={(value) => handleNumericChange("proteins", value)} />
             <Text style={styles.p}> g</Text>
           </View>
         </View>
@@ -206,7 +223,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={4}
               value={formData.sodium}
-              onChangeText={(value) => onFormChange("sodium", value)} />
+              onChangeText={(value) => handleNumericChange("sodium", value)} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
@@ -219,7 +236,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={4}
               value={formData.calcium}
-              onChangeText={(value) => onFormChange("calcium", value)} />
+              onChangeText={(value) => handleNumericChange("calcium", value)} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
@@ -232,7 +249,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.vitaminA}
-              onChangeText={(value) => onFormChange("vitaminA", value)} />
+              onChangeText={(value) => handleNumericChange("vitaminA", value)} />
             <Text style={styles.p}> mcg</Text>
           </View>
         </View>
@@ -245,7 +262,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={4}
               value={formData.vitaminC}
-              onChangeText={(value) => onFormChange("vitaminC", value)} />
+              onChangeText={(value) => handleNumericChange("vitaminC", value)} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
@@ -258,7 +275,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={3}
               value={formData.iron}
-              onChangeText={(value) => onFormChange("iron", value)} />
+              onChangeText={(value) => handleNumericChange("iron", value)} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
@@ -271,7 +288,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
               inputMode="numeric"
               maxLength={4}
               value={formData.potassium}
-              onChangeText={(value) => onFormChange("potassium", value)} />
+              onChangeText={(value) => handleNumericChange("potassium", value)} />
             <Text style={styles.p}> mg</Text>
           </View>
         </View>
