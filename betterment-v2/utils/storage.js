@@ -15,7 +15,7 @@ export async function saveSettings(settings) {
     console.error('Error saving settings:', error);
     throw error;
   }
-};
+}
 
 // Function to load settings data from AsyncStorage
 export async function loadSettings() {
@@ -33,7 +33,7 @@ export async function loadSettings() {
     console.error('Error loading settings:', error);
     throw error;
   }
-};
+}
 
 // Key for storing goals data in AsyncStorage
 const GOALS_STORAGE_KEY = '@MyApp:goals';
@@ -47,7 +47,7 @@ export async function saveGoals(goals) {
     console.error('Error saving goals:', error);
     throw error;
   }
-};
+}
 
 // Function to load goals data from AsyncStorage
 export async function loadGoals() {
@@ -65,37 +65,48 @@ export async function loadGoals() {
     console.error('Error loading goals:', error);
     throw error;
   }
-};
+}
 
 // Key for storing entry data in AsyncStorage
 export const FORM_DATA_STORAGE_KEY = '@MyApp:formData';
 
 // Function to save entry data to AsyncStorage
-export const saveFormData = async (formData) => {
+export async function saveFormData(formData) {
   try {
     // Convert formData to JSON string
     const jsonData = JSON.stringify(formData);
 
+    // Generate a unique key based on timestamp and other identifier
+    const id = `${Date.now()}-${formData.category}`;
+
     console.log('Form data to be saved:', formData);
 
-    // Save the formData to AsyncStorage
-    await AsyncStorage.setItem(FORM_DATA_STORAGE_KEY, jsonData);
+    // Save the formData with the generated ID
+    await AsyncStorage.setItem(FORM_DATA_STORAGE_KEY + ':' + id, jsonData);
 
     console.log('Form data saved successfully!');
+
+    return id; // Return the generated ID
   } catch (error) {
     console.error('Error saving form data:', error);
     throw error;
   }
-};
+}
 
 // Function to load entry data from AsyncStorage
-export const loadFormData = async () => {
+export async function loadFormData() {
   try {
-    const jsonData = await AsyncStorage.getItem(FORM_DATA_STORAGE_KEY);
-    const formData = JSON.parse(jsonData);
-    return formData ? [formData] : [];
+    const keys = await AsyncStorage.getAllKeys();
+    const formDataPromises = keys.filter((key) => key.startsWith(FORM_DATA_STORAGE_KEY)).map(async (key) => {
+      const jsonData = await AsyncStorage.getItem(key);
+      return JSON.parse(jsonData);
+    });
+
+    const formData = await Promise.all(formDataPromises);
+    console.log("Data loaded successfully", formData);
+    return formData;
   } catch (error) {
     console.error('Error loading form data:', error);
     throw error;
   }
-};
+}

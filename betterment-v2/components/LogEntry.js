@@ -41,8 +41,8 @@ export default function LogEntry({ category, entry }) {
       {/* Structure for Activity entries */}
       {category === 'activity' && (
         <View style={styles.entryContainer}>
-          <Text style={styles.activityNameText}>{entry.activityName}</Text>
-          <Text style={styles.p}>{entry.activityDuration} min</Text>
+          <Text style={styles.activityNameText}>{entry.name}</Text>
+          <Text style={styles.p}>{entry.duration} min</Text>
         </View>
       )}
 
