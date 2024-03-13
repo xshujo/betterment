@@ -21,7 +21,7 @@ export default function SleepEntryForm({ formData, onFormChange }) {
     if (value === "" || (!isNaN(fieldValueInt) && fieldValueInt <= 23)) {
       onFormChange(field, value);
     } else {
-      onFormChange(field, "23"); // Automatically set to max value if exceeded
+      onFormChange(field, "23");
     }
   }
 
@@ -30,7 +30,7 @@ export default function SleepEntryForm({ formData, onFormChange }) {
     if (value === "" || (!isNaN(fieldValueInt) && fieldValueInt <= 59)) {
       onFormChange(field, value);
     } else {
-      onFormChange(field, "59"); // Automatically set to max value if exceeded
+      onFormChange(field, "59");
     }
   }
 
@@ -44,10 +44,11 @@ export default function SleepEntryForm({ formData, onFormChange }) {
         {showSleepCalendar && (
           <View>
             <Calendar onDayPress={(day) => {
-              onFormChange("dateCreated", day.dateString);
+              onFormChange("sleepDate", day.dateString);
               toggleShowSleepCalendar();
             }}
-              markedDates={{ [formData.sleepDate]: { selected: true } }} />
+              markedDates={{ [formData.sleepDate]: { selected: true } }}
+              maxDate={new Date().toISOString().split('T')[0]} />
           </View>
         )}
       </View>
@@ -85,10 +86,11 @@ export default function SleepEntryForm({ formData, onFormChange }) {
         {showWakeCalendar && (
           <View>
             <Calendar onDayPress={(day) => {
-              onFormChange("dateCreated", day.dateString);
+              onFormChange("wakeDate", day.dateString);
               toggleShowWakeCalendar();
             }}
-              markedDates={{ [formData.wakeDate]: { selected: true } }} />
+              markedDates={{ [formData.wakeDate]: { selected: true } }}
+              maxDate={new Date().toISOString().split('T')[0]} />
           </View>
         )}
       </View>

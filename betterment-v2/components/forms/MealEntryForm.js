@@ -46,7 +46,8 @@ export default function MealEntryForm({ formData, onFormChange }) {
               onFormChange("dateCreated", day.dateString);
               toggleShowCalendar();
             }}
-              markedDates={{ [formData.dateCreated]: { selected: true } }} />
+              markedDates={{ [formData.dateCreated]: { selected: true } }}
+              maxDate={new Date().toISOString().split('T')[0]} />
           </View>
         )}
       </View>
