@@ -17,8 +17,11 @@ export default function SleepEntryForm({ formData, onFormChange }) {
   }
 
   function handleHoursChange(field, value) {
-    let fieldValueInt = parseInt(value);
-    if (value === "" || (!isNaN(fieldValueInt) && fieldValueInt <= 23)) {
+    if (value !== "" && value !== "0") {
+      value = parseInt(value).toString();
+    }
+
+    if (value === "" || (parseInt(value) >= 0 && parseInt(value) <= 23)) {
       onFormChange(field, value);
     } else {
       onFormChange(field, "23");
@@ -26,8 +29,11 @@ export default function SleepEntryForm({ formData, onFormChange }) {
   }
 
   function handleMinutesChange(field, value) {
-    let fieldValueInt = parseInt(value);
-    if (value === "" || (!isNaN(fieldValueInt) && fieldValueInt <= 59)) {
+    if (value !== "" && value !== "0") {
+      value = parseInt(value).toString();
+    }
+
+    if (value === "" || (parseInt(value) >= 0 && parseInt(value) <= 59)) {
       onFormChange(field, value);
     } else {
       onFormChange(field, "59");
