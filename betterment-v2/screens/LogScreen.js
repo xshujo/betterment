@@ -5,6 +5,7 @@ import { useFocusEffect } from "@react-navigation/core";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Calendar } from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
 
 import { fetchLogData } from "../utils/logUtils";
 import { Colors } from "../constants/Colors";
