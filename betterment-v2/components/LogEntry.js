@@ -8,33 +8,19 @@ export default function LogEntry({ category, entry }) {
     return null;
   }
 
-  // Sleep/Wake hours formating
-  const dateSleepAt = new Date(entry.sleepAt);
-  const dateWakeAt = new Date(entry.wakeAt);
+  // Formatting minutes of sleep entries
+  let formattedMinutes = [entry.sleepMinutes, entry.wakeMinutes].map((min) => (min <= 9 ? "0" + min : min));
 
-  const hoursSleepAt = dateSleepAt.getHours().toString().padStart(2, '0');
-  const minutesSleepAt = dateSleepAt.getMinutes().toString().padStart(2, '0');
-  const hoursWakeAt = dateWakeAt.getHours().toString().padStart(2, '0');
-  const minutesWakeAt = dateWakeAt.getMinutes().toString().padStart(2, '0');
+  // Convert sleep and wake timestamps to Date objects
+  const sleepTime = new Date(`${entry.sleepDate}T${entry.sleepHours}:${entry.sleepMinutes}:00`);
+  const wakeTime = new Date(`${entry.wakeDate}T${entry.wakeHours}:${entry.wakeMinutes}:00`);
 
-  const formattedSleepTime = `${hoursSleepAt}h${minutesSleepAt}`;
-  const formattedWakeTime = `${hoursWakeAt}h${minutesWakeAt}`;
+  // Calculate sleep duration in milliseconds
+  const sleepDurationMs = wakeTime - sleepTime;
 
-  // Sleep duration calculation
-  const sleepDurationMinutes = (dateWakeAt - dateSleepAt) / (1000 * 60); // Convert milliseconds to minutes
-
-  const hoursDuration = Math.floor(sleepDurationMinutes / 60);
-  const minutesDuration = Math.round(sleepDurationMinutes % 60);
-
-  // Sleep duration formating
-  let formattedDuration = `${hoursDuration} hours`;
-  if (minutesDuration > 0) {
-    if (minutesDuration <= 9) {
-      formattedDuration += ` 0${minutesDuration} minutes`;
-    } else {
-      formattedDuration += ` ${minutesDuration} minutes`;
-    }
-  }
+  // Convert sleep duration to hours and minutes
+  const hoursDuration = Math.floor(sleepDurationMs / (1000 * 60 * 60));
+  const minutesDuration = Math.floor((sleepDurationMs / (1000 * 60)) % 60);
 
   return (
     <>
@@ -48,62 +34,31 @@ export default function LogEntry({ category, entry }) {
 
       {/* Structure for Nutrition entries */}
       {/* Needs revision... */}
-      {category === 'nutrition' && (
+      {category === 'meal' && (
         <>
-          {entry.mealType === 'Breakfast' && (
-            <>
-              <Text style={styles.boldText}>{entry.mealType}</Text>
-              <View style={styles.entryContainer}>
-                <Text style={styles.p}>{entry.foodItemName}</Text>
-                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
-              </View>
-            </>
-          )}
-          {entry.mealType === 'Lunch' && (
-            <>
-              <Text style={styles.boldText}>{entry.mealType}</Text>
-              <View style={styles.entryContainer}>
-                <Text style={styles.p}>{entry.foodItemName}</Text>
-                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
-              </View>
-            </>
-          )}
-          {entry.mealType === 'Dinner' && (
-            <>
-              <Text style={styles.boldText}>{entry.mealType}</Text>
-              <View style={styles.entryContainer}>
-                <Text style={styles.p}>{entry.foodItemName}</Text>
-                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
-              </View>
-            </>
-          )}
-          {entry.mealType === 'Other' && (
-            <>
-              <Text style={styles.boldText}>{entry.mealType}</Text>
-              <View style={styles.entryContainer}>
-                <Text style={styles.p}>{entry.foodItemName}</Text>
-                <Text style={styles.p}>{entry.foodItemCalories} cal</Text>
-              </View>
-            </>
-          )}
+          {/* <Text style={styles.boldText}>{entry.mealType}</Text> */}
+          <View style={styles.entryContainer}>
+            <Text style={styles.p}>{entry.name}</Text>
+            <Text style={styles.p}>{entry.calories} cal</Text>
+          </View>
         </>
       )}
 
       {/* Structure for Sleep entries */}
       {category === 'sleep' && (
         <View style={styles.sleepContainer}>
-          <View style={styles.entryContainer}><Text style={styles.boldText}>Slept at</Text><Text style={styles.p}>{formattedSleepTime}</Text></View>
-          <View style={styles.entryContainer}><Text style={styles.boldText}>Woke at</Text><Text style={styles.p}>{formattedWakeTime}</Text></View>
-          <Text style={styles.p}><Text>Sleep duration: </Text>{formattedDuration}</Text>
+          <View style={styles.entryContainer}><Text style={styles.boldText}>Slept at</Text><Text style={styles.p}>{entry.sleepHours}h{formattedMinutes[0]}</Text></View>
+          <View style={styles.entryContainer}><Text style={styles.boldText}>Woke at</Text><Text style={styles.p}>{entry.wakeHours}h{formattedMinutes[1]}</Text></View>
+          <Text style={styles.p}><Text>Sleep duration: </Text>{hoursDuration}h {minutesDuration}min</Text>
         </View>
       )}
 
       {/* Structure for Measurements entries */}
-      {category === 'measurements' && (
+      {category === 'measurement' && (
         <View>
           <View style={styles.entryContainer}>
             <Text style={styles.boldText}>{entry.measurementName}</Text>
-            <Text style={styles.p}>{entry.measurementValue} {entry.measurementUnit}</Text>
+            <Text style={styles.p}>{entry.measurementValue} {entry.measurementName === "weight" ? "lbs" : "cm"}</Text>{/* Settings... */}
           </View>
         </View>
       )}
@@ -116,11 +71,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
   },
   entryContainer: {
+    paddingVertical: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   boldText: {
     fontFamily: 'Nunito-Bold',
+    textTransform: 'capitalize',
   },
   activityNameText: {
     maxWidth: 175,

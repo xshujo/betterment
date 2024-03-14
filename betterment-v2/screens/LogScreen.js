@@ -4,16 +4,46 @@ import React, { useEffect, useState } from "react";
 import { useFocusEffect } from "@react-navigation/core";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { Calendar } from 'react-native-calendars'; // Import calendar picker
+import { Calendar } from 'react-native-calendars';
 
 import { fetchLogData } from "../utils/logUtils";
 import { Colors } from "../constants/Colors";
 import LogEntry from "../components/LogEntry";
+import ClearDataButton from "../components/temp/ClearAllData";
 
 export default function LogScreen() {
   const [logData, setLogData] = useState([]);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // Default to today's date
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+
+  // Function to get the formatted date string
+  const getTitleDate = () => {
+    const selectedDateObj = new Date(selectedDate);
+    selectedDateObj.setDate(selectedDateObj.getDate() + 1);
+    const options = { weekday: 'long' };
+    const dayOfWeek = selectedDateObj.toLocaleDateString('en-US', options);
+    const dayOfMonth = selectedDateObj.getDate();
+    const ordinalIndicator = getOrdinalIndicator(dayOfMonth);
+    const monthAbbreviation = selectedDateObj.toLocaleDateString('en-US', { month: 'short' });
+    const year = selectedDateObj.getFullYear();
+    return {
+      dayOfWeek,
+      formattedDate: `${monthAbbreviation} ${dayOfMonth}${ordinalIndicator}, ${year}`
+    };
+  };
+
+  // Function to get the ordinal indicator for the day of the month
+  const getOrdinalIndicator = (day) => {
+    if (day > 10 && day < 20) {
+      return 'th';
+    }
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -37,17 +67,42 @@ export default function LogScreen() {
   function handleDayPress(day) {
     setSelectedDate(day.dateString);
     setShowCalendar(false);
-  };
+  }
 
-  // Get current date in "YYYY-MM-DD" format
   const currentDate = new Date().toISOString().split('T')[0];
+
+  // Filter log data for the selected date
+  const filteredLogData = logData.filter(entry => entry.formType[1] !== 'sleep' ? entry.dateCreated === selectedDate : entry.wakeDate === selectedDate);
+
+  const groupedLogData = {};
+
+  filteredLogData.forEach((entry) => {
+    const category = entry.formType[1];
+    if (!groupedLogData[category]) {
+      groupedLogData[category] = {};
+    }
+
+    if (category === 'meal') {
+      const mealType = entry.mealType;
+      if (!groupedLogData[category][mealType]) {
+        groupedLogData[category][mealType] = [];
+      }
+      groupedLogData[category][mealType].push(entry);
+    } else {
+      if (!groupedLogData[category]['entries']) {
+        groupedLogData[category]['entries'] = [];
+      }
+      groupedLogData[category]['entries'].push(entry);
+    }
+  });
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
+      {/* <ClearDataButton /> */}
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.dateContainer}>
-          <Text style={styles.dayText}>Selected Date</Text>
-          <Text style={styles.dateText}>{selectedDate}</Text>
+          <Text style={styles.dayText}>{getTitleDate().dayOfWeek}</Text>
+          <Text style={styles.dateText}>{getTitleDate().formattedDate}</Text>
         </View>
         <TouchableOpacity style={styles.showCalendarContainer} onPress={toggleShowCalendar}>
           <Text style={styles.showCalendarText}>
@@ -65,19 +120,43 @@ export default function LogScreen() {
           </View>
         )}
 
-        {logData.length === 0 ? (
+        {Object.keys(groupedLogData).length === 0 ? (
           <View style={styles.noEntriesContainer}>
             <Text style={styles.noEntriesText}>No entries recorded</Text>
           </View>
         ) : (
-          logData.map((entry, index) => (
-            <LinearGradient key={index} colors={['#FED3D4', '#EEFFF3']} start={[0, 1]} end={[1, 0]} style={{ borderRadius: 16 }}>
-              <View style={styles.logContainer}>
-                {/* Render details based on the structure of your AsyncStorage data */}
-                <Text style={styles.categoryText}>{entry.formType[1]}</Text>
-                {/* Additional details specific to each entry */}
-                {/* Render LogEntry component */}
-                <LogEntry key={entry.id} category={entry.formType[1]} entry={entry} />
+          Object.keys(groupedLogData).map((category, index) => (
+            <LinearGradient key={index} colors={['#FED3D4', '#EEFFF3']} start={[0, 1]} end={[1, 0]} style={{ borderRadius: 16, padding: 16 }}>
+              <View>
+                <Text style={styles.categoryText}>{category}</Text>
+                {/* Display exercise count for activity category */}
+                {category === 'activity' && (
+                  <Text style={styles.countText}>Exercise count: {groupedLogData[category].entries.length}</Text>
+                )}
+                {/* Display meal count for meal category */}
+                {category === 'meal' && (
+                  <View>
+                    <Text style={styles.countText}>Meal count: {Object.keys(groupedLogData[category]).length}</Text>
+                    {Object.keys(groupedLogData[category]).map((mealType, idx) => (
+                      <View key={idx}>
+                        <Text style={styles.boldText}>{mealType}</Text>
+                        <View style={styles.logContainer}>
+                          {groupedLogData[category][mealType].map((entry, entryIdx) => (
+                            <LogEntry key={entryIdx} category={category} entry={entry} />
+                          ))}
+                        </View>
+                      </View>
+                    ))}
+                  </View>
+                )}
+                {/* Display entries for other categories */}
+                {category !== 'meal' && (
+                  <View style={styles.logContainer}>
+                    {groupedLogData[category].entries.map((entry, entryIdx) => (
+                      <LogEntry key={entryIdx} category={category} entry={entry} />
+                    ))}
+                  </View>
+                )}
               </View>
             </LinearGradient>
           ))
@@ -118,9 +197,6 @@ const styles = StyleSheet.create({
     color: Colors.accent1,
   },
   logContainer: {
-    borderRadius: 16,
-    padding: 16,
-    gap: 12
   },
   categoryText: {
     fontFamily: 'Nunito-ExtraBold',
@@ -131,7 +207,12 @@ const styles = StyleSheet.create({
   countText: {
     fontFamily: 'Nunito-Light',
     fontSize: 14,
-    marginBottom: 8,
+  },
+  boldText: {
+    fontFamily: 'Nunito-Bold',
+    textTransform: 'capitalize',
+    marginTop: 8,
+    paddingVertical: 8,
   },
   noEntriesContainer: {
     height: 120,
