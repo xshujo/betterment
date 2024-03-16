@@ -176,20 +176,19 @@ const styles = StyleSheet.create({
   saveButtonText: {
     backgroundColor: Colors.secondary,
     fontFamily: 'Nunito-Bold',
-    fontSize: 16,
     color: Colors.accent1,
     borderRadius: 48,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     paddingVertical: 8,
   },
   optionPicker: {
-    minWidth: 220,
+    minWidth: 200,
     borderColor: Colors.secondary,
     borderWidth: 1,
     borderRadius: 16,
   },
   pickerTitleContainer: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     paddingVertical: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -197,7 +196,6 @@ const styles = StyleSheet.create({
   },
   pickerTitleText: {
     fontFamily: 'Nunito-Bold',
-    fontSize: 16,
   },
   pickerOptionContainer: {
     paddingHorizontal: 16,
