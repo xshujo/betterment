@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Calendar } from 'react-native-calendars';
 
@@ -7,6 +7,18 @@ import { Colors } from "../../constants/Colors";
 export default function SleepEntryForm({ formData, onFormChange }) {
   const [showSleepCalendar, setShowSleepCalendar] = useState(false);
   const [showWakeCalendar, setShowWakeCalendar] = useState(false);
+  const [selectedSleepDate, setSelectedSleepDate] = useState(formData.sleepDate);
+  const [selectedWakeDate, setSelectedWakeDate] = useState(formData.wakeDate);
+
+  useEffect(() => {
+    // Update sleepDate in form data when selectedSleepDate changes
+    onFormChange("sleepDate", selectedSleepDate);
+  }, [selectedSleepDate]);
+
+  useEffect(() => {
+    // Update wakeDate in form data when selectedWakeDate changes
+    onFormChange("wakeDate", selectedWakeDate);
+  }, [selectedWakeDate]);
 
   function toggleShowSleepCalendar() {
     setShowSleepCalendar(!showSleepCalendar);
@@ -40,16 +52,35 @@ export default function SleepEntryForm({ formData, onFormChange }) {
     }
   }
 
+  function formatDate(dateString) {
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + 1);
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  function handleSleepDateChange(dateString) {
+    setSelectedSleepDate(dateString);
+
+    // Update wakeDate to the next day
+    const nextDay = new Date(dateString);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const nextDayString = nextDay.toISOString().split('T')[0];
+
+    setSelectedWakeDate(nextDayString);
+  }
+
   return (
     <>
       <View style={styles.fieldContainer}>
         <Text style={styles.h3}>Sleep date *</Text>
         <TouchableOpacity style={styles.dateInputContainer} onPress={toggleShowSleepCalendar}>
-          <Text style={styles.p}>{formData.sleepDate}</Text>{showSleepCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
+          <Text style={styles.p}>{formatDate(formData.sleepDate)}</Text>{showSleepCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
         </TouchableOpacity>
         {showSleepCalendar && (
           <View>
             <Calendar onDayPress={(day) => {
+              handleSleepDateChange(day.dateString);
               onFormChange("sleepDate", day.dateString);
               toggleShowSleepCalendar();
             }}
@@ -87,7 +118,7 @@ export default function SleepEntryForm({ formData, onFormChange }) {
       <View style={styles.fieldContainer}>
         <Text style={styles.h3}>Wake date *</Text>
         <TouchableOpacity style={styles.dateInputContainer} onPress={toggleShowWakeCalendar}>
-          <Text style={styles.p}>{formData.wakeDate}</Text>{showWakeCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
+          <Text style={styles.p}>{formatDate(formData.wakeDate)}</Text>{showWakeCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
         </TouchableOpacity>
         {showWakeCalendar && (
           <View>
@@ -159,7 +190,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInputContainer: {
-    width: 140,
+    width: 135,
     borderColor: Colors.primary,
     borderWidth: 1,
     borderRadius: 16,
