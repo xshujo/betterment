@@ -57,6 +57,10 @@ export default function AddScreen() {
 
     // Clear the form after saving
     setFormData(getInitialFormData(currentForm[1]));
+
+    const entryType = currentForm[1];
+    const capitalizedEntryType = entryType.charAt(0).toUpperCase() + entryType.slice(1);
+    alert(`${capitalizedEntryType} entry saved! You can find it in Log.`);
   }
 
   function getInitialFormData(formType) {
