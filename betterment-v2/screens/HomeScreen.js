@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
   gradient: {
     height: 100,
     borderRadius: 16,
-    flexBasis: 150,
+    flexBasis: 128,
+    flexGrow: 1,
   },
   categoryContainer: {
     padding: 16,
