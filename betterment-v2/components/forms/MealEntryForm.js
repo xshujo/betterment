@@ -40,6 +40,13 @@ export default function MealEntryForm({ formData, onFormChange }) {
     }
   }
 
+  function formatDate(dateString) {
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + 1);
+    return date.toLocaleDateString('en-US', options);
+  }
+
   return (
     <>
       <View style={styles.fieldContainer}>
@@ -55,7 +62,7 @@ export default function MealEntryForm({ formData, onFormChange }) {
       <View style={styles.fieldContainer}>
         <Text style={styles.h3}>Date</Text>
         <TouchableOpacity style={styles.inputContainer} onPress={toggleShowCalendar}>
-          <Text style={styles.p}>{formData.dateCreated}</Text>{showCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
+          <Text style={styles.p}>{formatDate(formData.dateCreated)}</Text>{showCalendar ? <Text style={{ fontSize: 12 }}>&#x25B2;</Text> : <Text style={{ fontSize: 12 }}>&#x25BC;</Text>}
         </TouchableOpacity>
         {showCalendar && (
           <View>
