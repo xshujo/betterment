@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "betterment-v2",
-    "slug": "betterment-v2",
-    "version": "1.0.0",
+    "name": "Better Me",
+    "slug": "betterme",
+    "version": "0.01.2024.03.16",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
@@ -15,7 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
