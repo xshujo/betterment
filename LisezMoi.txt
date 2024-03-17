@@ -1,0 +1,3 @@
+Code source : https://github.com/xshujo/betterment
+
+Le dossier contenant le code source de mon application est "betterment-v2".

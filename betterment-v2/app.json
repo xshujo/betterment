@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "betterment-v2",
-    "slug": "betterment-v2",
-    "version": "1.0.0",
+    "name": "Better Me",
+    "slug": "betterme",
+    "version": "0.01.2024.03.16",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
@@ -15,19 +15,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.xshujo.betterme"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d6503482-85a3-4795-891b-1b4691f7da76"
+      }
+    }
   }
 }

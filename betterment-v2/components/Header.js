@@ -3,12 +3,12 @@
 import React from "react";
 
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/core";
 
 import { useCurrentScreen } from "../hooks/useCurrentScreen";
 import { Colors } from "../constants/Colors";
-
-import { useNavigation, useRoute } from "@react-navigation/core";
 import { GoBackIcon, SettingsIcon } from "./SvgIcon";
+
 
 export default function Header() {
   const currentScreen = useCurrentScreen();
@@ -54,7 +54,7 @@ export default function Header() {
       {renderGoBackButton()}
 
       {/* Screen name */}
-      <Text style={styles.screenNameText}>{currentScreen}</Text>
+      {currentScreen === "Add" ? <Text style={styles.screenNameText}>New entry</Text> : <Text style={styles.screenNameText}>{currentScreen}</Text>}
 
       {/* Settings button */}
       {renderSettingsButton()}
@@ -63,7 +63,6 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-  // Styles for the container (header)
   container: {
     minHeight: 120,
     backgroundColor: Colors.accent1,
@@ -71,11 +70,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  // Styles for the icons' container
   iconContainer: {
     padding: 32,
   },
-  // Styles for the screen name
   screenNameText: {
     fontFamily: 'Nunito-Bold',
   }
